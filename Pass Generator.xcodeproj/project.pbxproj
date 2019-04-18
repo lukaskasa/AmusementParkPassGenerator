@@ -12,6 +12,12 @@
 		80DD2C75225DC1AA001CBFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DD2C73225DC1AA001CBFEC /* Main.storyboard */; };
 		80DD2C77225DC1AA001CBFEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80DD2C76225DC1AA001CBFEC /* Assets.xcassets */; };
 		80DD2C7A225DC1AA001CBFEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DD2C78225DC1AA001CBFEC /* LaunchScreen.storyboard */; };
+		80DD2C82225E5EB4001CBFEC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C81225E5EB4001CBFEC /* Protocols.swift */; };
+		80DD2C85225E7BBE001CBFEC /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C84225E7BBE001CBFEC /* Guest.swift */; };
+		80DD2C8F225E7CCA001CBFEC /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C8E225E7CCA001CBFEC /* Employee.swift */; };
+		80DD2CA0226331BF001CBFEC /* PassGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C9F226331BF001CBFEC /* PassGenerator.swift */; };
+		80DD2CA22263570D001CBFEC /* PassValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2CA12263570D001CBFEC /* PassValidator.swift */; };
+		80DD2CA422645877001CBFEC /* Pass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2CA322645877001CBFEC /* Pass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		80DD2C76225DC1AA001CBFEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80DD2C79225DC1AA001CBFEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80DD2C7B225DC1AA001CBFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80DD2C81225E5EB4001CBFEC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		80DD2C84225E7BBE001CBFEC /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		80DD2C8E225E7CCA001CBFEC /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		80DD2C9F226331BF001CBFEC /* PassGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassGenerator.swift; sourceTree = "<group>"; };
+		80DD2CA12263570D001CBFEC /* PassValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassValidator.swift; sourceTree = "<group>"; };
+		80DD2CA322645877001CBFEC /* Pass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,68 @@
 		80DD2C6E225DC1AA001CBFEC /* Pass Generator */ = {
 			isa = PBXGroup;
 			children = (
-				80DD2C6F225DC1AA001CBFEC /* AppDelegate.swift */,
-				80DD2C71225DC1AA001CBFEC /* ViewController.swift */,
-				80DD2C73225DC1AA001CBFEC /* Main.storyboard */,
+				80DD2C83225E5EB8001CBFEC /* Models */,
+				80DD2C9D22622778001CBFEC /* Views */,
+				80DD2C9E2262278E001CBFEC /* Controllers */,
 				80DD2C76225DC1AA001CBFEC /* Assets.xcassets */,
-				80DD2C78225DC1AA001CBFEC /* LaunchScreen.storyboard */,
+				80DD2C6F225DC1AA001CBFEC /* AppDelegate.swift */,
 				80DD2C7B225DC1AA001CBFEC /* Info.plist */,
 			);
 			path = "Pass Generator";
+			sourceTree = "<group>";
+		};
+		80DD2C83225E5EB8001CBFEC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				80DD2C81225E5EB4001CBFEC /* Protocols.swift */,
+				80DD2C86225E7BD7001CBFEC /* Entrants */,
+				80DD2C9B226226BF001CBFEC /* Pass Generator */,
+				80DD2C9C22622745001CBFEC /* Pass Validator */,
+				80DD2CA322645877001CBFEC /* Pass.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		80DD2C86225E7BD7001CBFEC /* Entrants */ = {
+			isa = PBXGroup;
+			children = (
+				80DD2C84225E7BBE001CBFEC /* Guest.swift */,
+				80DD2C8E225E7CCA001CBFEC /* Employee.swift */,
+			);
+			path = Entrants;
+			sourceTree = "<group>";
+		};
+		80DD2C9B226226BF001CBFEC /* Pass Generator */ = {
+			isa = PBXGroup;
+			children = (
+				80DD2C9F226331BF001CBFEC /* PassGenerator.swift */,
+			);
+			path = "Pass Generator";
+			sourceTree = "<group>";
+		};
+		80DD2C9C22622745001CBFEC /* Pass Validator */ = {
+			isa = PBXGroup;
+			children = (
+				80DD2CA12263570D001CBFEC /* PassValidator.swift */,
+			);
+			path = "Pass Validator";
+			sourceTree = "<group>";
+		};
+		80DD2C9D22622778001CBFEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80DD2C73225DC1AA001CBFEC /* Main.storyboard */,
+				80DD2C78225DC1AA001CBFEC /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		80DD2C9E2262278E001CBFEC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				80DD2C71225DC1AA001CBFEC /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +202,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				80DD2C72225DC1AA001CBFEC /* ViewController.swift in Sources */,
+				80DD2C8F225E7CCA001CBFEC /* Employee.swift in Sources */,
 				80DD2C70225DC1AA001CBFEC /* AppDelegate.swift in Sources */,
+				80DD2CA22263570D001CBFEC /* PassValidator.swift in Sources */,
+				80DD2CA422645877001CBFEC /* Pass.swift in Sources */,
+				80DD2C85225E7BBE001CBFEC /* Guest.swift in Sources */,
+				80DD2CA0226331BF001CBFEC /* PassGenerator.swift in Sources */,
+				80DD2C82225E5EB4001CBFEC /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
