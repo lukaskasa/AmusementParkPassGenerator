@@ -14,7 +14,7 @@ enum SwipeMethod {
     case discountAccess
 }
 
-class PassValidator: Validator {
+class PassValidator_OLD {
     
     var swiped = false
     

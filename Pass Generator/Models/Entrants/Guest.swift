@@ -19,10 +19,16 @@ enum GuestType: EntrantType {
             return [.amusement]
         }
     }
+    
+    func rideAccess() -> String {
+        switch self {
+        case .classic, .child, .vip:
+            return "Access all rides"
+        }
+    }
 }
 
 class Guest: Entrant {
-
     // Properties
     var entrantType: EntrantType
     var dateOfBirth: String
@@ -42,5 +48,7 @@ class Guest: Entrant {
 //            self.dateOfBirth = dateOfBirth
 //        }
     }
+    
+
     
 }

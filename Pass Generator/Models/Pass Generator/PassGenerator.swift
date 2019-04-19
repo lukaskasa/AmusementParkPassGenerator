@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PassGenerator: Generator {
+class PassGenerator_OLD {
     
     let childAgeLimit: Double = 5
     

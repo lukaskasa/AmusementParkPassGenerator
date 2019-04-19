@@ -82,8 +82,7 @@
 				80DD2C81225E5EB4001CBFEC /* Protocols.swift */,
 				80DD2C86225E7BD7001CBFEC /* Entrants */,
 				80DD2C9B226226BF001CBFEC /* Pass Generator */,
-				80DD2C9C22622745001CBFEC /* Pass Validator */,
-				80DD2CA322645877001CBFEC /* Pass.swift */,
+				80DD2C9C22622745001CBFEC /* Pass */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -105,12 +104,13 @@
 			path = "Pass Generator";
 			sourceTree = "<group>";
 		};
-		80DD2C9C22622745001CBFEC /* Pass Validator */ = {
+		80DD2C9C22622745001CBFEC /* Pass */ = {
 			isa = PBXGroup;
 			children = (
+				80DD2CA322645877001CBFEC /* Pass.swift */,
 				80DD2CA12263570D001CBFEC /* PassValidator.swift */,
 			);
-			path = "Pass Validator";
+			path = Pass;
 			sourceTree = "<group>";
 		};
 		80DD2C9D22622778001CBFEC /* Views */ = {

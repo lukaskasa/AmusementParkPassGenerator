@@ -44,6 +44,7 @@ enum SwipeError: Error {
 
 protocol EntrantType {
     func accessAreas() -> [ParkArea]
+    func rideAccess() -> String
 }
 
 protocol Entrant {
@@ -76,21 +77,29 @@ protocol Entrant {
 
 // MARK: - Pass
 
-protocol Generator {
-    var childAgeLimit: Double { get }
-    func generatePass(for entrant: Entrant) -> Pass
-    func isPersonalInfoProvided(entrant: Entrant) -> (Bool, String)
-    func convertStringToDate(dateOfBirth: String) -> Date
-    func isChildUnderFive(dateOfBirth: Date) -> Bool
+protocol Generatable {
+//    var childAgeLimit: Double { get }
+//    func generatePass(for entrant: Entrant) -> Pass
+//    func isPersonalInfoProvided(entrant: Entrant) -> (Bool, String)
+//    func convertStringToDate(dateOfBirth: String) -> Date
+//    func isChildUnderFive(dateOfBirth: Date) -> Bool
+
+    func generatePass(entrant: Entrant) -> Pass
 }
 
-protocol Validator {
-    func validateAreaAccess(_ entrantPass: Pass) -> [String]
-    func validateRideAccess(_ entrantPass: Pass) -> [String]
-    func validateDiscountAccess(_ entrantPass: Pass) -> [String]
-    func validate(_ options: SwipeMethod, with entrantPass: Pass) throws -> [String]
-    func isEntrantsBirthday(_ entrantPass: Pass)
+extension Generatable {
+    func generatePass(entrant: Entrant) -> Pass {
+        return EntrantPass(firstName: entrant.firstName, lastName: entrant.firstName, dateOfBirth: entrant.dateOfBirth, accessAreas: entrant.entrantType.accessAreas(), rideAccess: entrant.entrantType.rideAccess(), rideLineSkippable: <#T##Bool#>, foodDiscount: en, merchDiscount: <#T##Double#>)
+    }
 }
+
+//protocol Validator {
+//    func validateAreaAccess(_ entrantPass: Pass) -> [String]
+//    func validateRideAccess(_ entrantPass: Pass) -> [String]
+//    func validateDiscountAccess(_ entrantPass: Pass) -> [String]
+//    func validate(_ options: SwipeMethod, with entrantPass: Pass) throws -> [String]
+//    func isEntrantsBirthday(_ entrantPass: Pass)
+//}
 
 protocol Pass {
     var firstName: String? { get }
@@ -102,3 +111,4 @@ protocol Pass {
     var foodDiscount: Double { get }
     var merchDiscount: Double { get }
 }
+

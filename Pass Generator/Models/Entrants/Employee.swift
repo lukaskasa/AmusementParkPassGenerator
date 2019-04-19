@@ -26,6 +26,13 @@ enum EmployeeType: EntrantType {
             return [.amusement, .kitchen, .rideControl, .maintanance, .office]
         }
     }
+    
+    func rideAccess() -> String {
+        switch self {
+        case .foodService, .rideService, .maintenance, .manager:
+            return "Access all rides"
+        }
+    }
 }
 
 class Employee: Entrant {
