@@ -6,12 +6,6 @@
 //  Copyright © 2019 Lukas Kasakaitis. All rights reserved.
 //
 
-/*
- 
- The core objects such as Entrants and Passes are defined using object oriented approach (class/struct/protocol/inheritance/composition)
- 
- */
-
 import Foundation
 
 // MARK: - Park Areas
@@ -26,8 +20,19 @@ enum ParkArea: String {
 
 // MARK: - Error Types
 
+enum MissingData: String, Error {
+    case missingDateOfBirth
+    case missingFirstName = "Missing First Name!"
+    case missingLastName = "Missing Last Name!"
+    case missingStreetAddress
+    case missingCity
+    case missingState
+    case missingZipCode
+}
+
 enum InvalidData: Error {
     case invalidDateOfBirth
+    case childIsTooOld
     case invalidfirstName
     case invalidLastName
     case invalidStreetAddress
@@ -37,7 +42,7 @@ enum InvalidData: Error {
 }
 
 enum SwipeError: Error {
-    case swipedTwice
+    case swipedTooOften
 }
 
 // MARK: - Entrant
@@ -47,68 +52,43 @@ protocol EntrantType {
     func rideAccess() -> String
 }
 
-protocol Entrant {
-    var entrantType: EntrantType { get set }
-    
-    var dateOfBirth: String { get set }
-    
-    var firstName: String? { get set }
-    var lastName: String? { get set }
-    
-    var streetAddress: String? { get set }
-    var city: String? { get set }
-    var state: String? { get set }
-    var zipCode: String? { get set }
-}
-
 // MARK: - Personal Information
 
-//protocol Nameable {
-//    var firstName: String { get set }
-//    var lastName: String { get set }
-//}
-//
-//protocol Addressable {
-//    var streetAddress: String { get set }
-//    var city: String { get set }
-//    var state: String { get set }
-//    var zipCode: String { get set }
-//}
+protocol Nameable {
+    var firstName: String { get set }
+    var lastName: String { get set }
+}
+
+protocol Addressable {
+    var streetAddress: String { get set }
+    var city: String { get set }
+    var state: String { get set }
+    var zipCode: String { get set }
+}
 
 // MARK: - Pass
 
 protocol Generatable {
-//    var childAgeLimit: Double { get }
-//    func generatePass(for entrant: Entrant) -> Pass
-//    func isPersonalInfoProvided(entrant: Entrant) -> (Bool, String)
-//    func convertStringToDate(dateOfBirth: String) -> Date
-//    func isChildUnderFive(dateOfBirth: Date) -> Bool
-
-    func generatePass(entrant: Entrant) -> Pass
+    func generatePass() throws -> Pass
 }
 
-extension Generatable {
-    func generatePass(entrant: Entrant) -> Pass {
-        return EntrantPass(firstName: entrant.firstName, lastName: entrant.firstName, dateOfBirth: entrant.dateOfBirth, accessAreas: entrant.entrantType.accessAreas(), rideAccess: entrant.entrantType.rideAccess(), rideLineSkippable: <#T##Bool#>, foodDiscount: en, merchDiscount: <#T##Double#>)
-    }
+enum RideAccess: String {
+    case unlimited = "Access all rides"
+    case limited = "No access"
 }
 
-//protocol Validator {
-//    func validateAreaAccess(_ entrantPass: Pass) -> [String]
-//    func validateRideAccess(_ entrantPass: Pass) -> [String]
-//    func validateDiscountAccess(_ entrantPass: Pass) -> [String]
-//    func validate(_ options: SwipeMethod, with entrantPass: Pass) throws -> [String]
-//    func isEntrantsBirthday(_ entrantPass: Pass)
-//}
+enum DiscountType {
+    case foodDiscount
+    case merchandiseDiscount
+}
 
 protocol Pass {
     var firstName: String? { get }
     var lastName: String? { get }
     var dateOfBirth: Date? { get }
     var accessAreas: [ParkArea] { get }
-    var rideAccess: String { get }
-    var rideLineSkippable: Bool { get }
-    var foodDiscount: Double { get }
-    var merchDiscount: Double { get }
+    func validateAreaAccess(area: ParkArea) -> Bool
+    func hasRideAccess() -> Bool
+    func discountAccess(type: DiscountType) throws -> Double
 }
 

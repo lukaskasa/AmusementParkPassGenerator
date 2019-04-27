@@ -15,9 +15,11 @@
 		80DD2C82225E5EB4001CBFEC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C81225E5EB4001CBFEC /* Protocols.swift */; };
 		80DD2C85225E7BBE001CBFEC /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C84225E7BBE001CBFEC /* Guest.swift */; };
 		80DD2C8F225E7CCA001CBFEC /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C8E225E7CCA001CBFEC /* Employee.swift */; };
-		80DD2CA0226331BF001CBFEC /* PassGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C9F226331BF001CBFEC /* PassGenerator.swift */; };
-		80DD2CA22263570D001CBFEC /* PassValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2CA12263570D001CBFEC /* PassValidator.swift */; };
-		80DD2CA422645877001CBFEC /* Pass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2CA322645877001CBFEC /* Pass.swift */; };
+		80DD2CA422645877001CBFEC /* ClassicPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2CA322645877001CBFEC /* ClassicPass.swift */; };
+		E4C11135226B02C500E096A3 /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C11134226B02C500E096A3 /* Entrant.swift */; };
+		E4C111372271854900E096A3 /* EmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C111362271854900E096A3 /* EmployeePass.swift */; };
+		E4C111392272D44400E096A3 /* VipPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C111382272D44400E096A3 /* VipPass.swift */; };
+		E4C1113B227370D000E096A3 /* ChildPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1113A227370D000E096A3 /* ChildPass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +33,11 @@
 		80DD2C81225E5EB4001CBFEC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		80DD2C84225E7BBE001CBFEC /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		80DD2C8E225E7CCA001CBFEC /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
-		80DD2C9F226331BF001CBFEC /* PassGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassGenerator.swift; sourceTree = "<group>"; };
-		80DD2CA12263570D001CBFEC /* PassValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassValidator.swift; sourceTree = "<group>"; };
-		80DD2CA322645877001CBFEC /* Pass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pass.swift; sourceTree = "<group>"; };
+		80DD2CA322645877001CBFEC /* ClassicPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPass.swift; sourceTree = "<group>"; };
+		E4C11134226B02C500E096A3 /* Entrant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
+		E4C111362271854900E096A3 /* EmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeePass.swift; sourceTree = "<group>"; };
+		E4C111382272D44400E096A3 /* VipPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipPass.swift; sourceTree = "<group>"; };
+		E4C1113A227370D000E096A3 /* ChildPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildPass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +85,7 @@
 			children = (
 				80DD2C81225E5EB4001CBFEC /* Protocols.swift */,
 				80DD2C86225E7BD7001CBFEC /* Entrants */,
-				80DD2C9B226226BF001CBFEC /* Pass Generator */,
-				80DD2C9C22622745001CBFEC /* Pass */,
+				80DD2C9C22622745001CBFEC /* Passes */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -90,27 +93,22 @@
 		80DD2C86225E7BD7001CBFEC /* Entrants */ = {
 			isa = PBXGroup;
 			children = (
+				E4C11134226B02C500E096A3 /* Entrant.swift */,
 				80DD2C84225E7BBE001CBFEC /* Guest.swift */,
 				80DD2C8E225E7CCA001CBFEC /* Employee.swift */,
 			);
 			path = Entrants;
 			sourceTree = "<group>";
 		};
-		80DD2C9B226226BF001CBFEC /* Pass Generator */ = {
+		80DD2C9C22622745001CBFEC /* Passes */ = {
 			isa = PBXGroup;
 			children = (
-				80DD2C9F226331BF001CBFEC /* PassGenerator.swift */,
+				80DD2CA322645877001CBFEC /* ClassicPass.swift */,
+				E4C111382272D44400E096A3 /* VipPass.swift */,
+				E4C1113A227370D000E096A3 /* ChildPass.swift */,
+				E4C111362271854900E096A3 /* EmployeePass.swift */,
 			);
-			path = "Pass Generator";
-			sourceTree = "<group>";
-		};
-		80DD2C9C22622745001CBFEC /* Pass */ = {
-			isa = PBXGroup;
-			children = (
-				80DD2CA322645877001CBFEC /* Pass.swift */,
-				80DD2CA12263570D001CBFEC /* PassValidator.swift */,
-			);
-			path = Pass;
+			path = Passes;
 			sourceTree = "<group>";
 		};
 		80DD2C9D22622778001CBFEC /* Views */ = {
@@ -202,12 +200,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				80DD2C72225DC1AA001CBFEC /* ViewController.swift in Sources */,
+				E4C1113B227370D000E096A3 /* ChildPass.swift in Sources */,
 				80DD2C8F225E7CCA001CBFEC /* Employee.swift in Sources */,
+				E4C111392272D44400E096A3 /* VipPass.swift in Sources */,
 				80DD2C70225DC1AA001CBFEC /* AppDelegate.swift in Sources */,
-				80DD2CA22263570D001CBFEC /* PassValidator.swift in Sources */,
-				80DD2CA422645877001CBFEC /* Pass.swift in Sources */,
+				80DD2CA422645877001CBFEC /* ClassicPass.swift in Sources */,
 				80DD2C85225E7BBE001CBFEC /* Guest.swift in Sources */,
-				80DD2CA0226331BF001CBFEC /* PassGenerator.swift in Sources */,
+				E4C11135226B02C500E096A3 /* Entrant.swift in Sources */,
+				E4C111372271854900E096A3 /* EmployeePass.swift in Sources */,
 				80DD2C82225E5EB4001CBFEC /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
