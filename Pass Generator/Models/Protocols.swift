@@ -82,13 +82,19 @@ enum DiscountType {
     case merchandiseDiscount
 }
 
+enum SwipeMethod {
+    case area
+    case ride
+    case dicount
+}
+
 protocol Pass {
     var firstName: String? { get }
     var lastName: String? { get }
     var dateOfBirth: Date? { get }
     var accessAreas: [ParkArea] { get }
-    func validateAreaAccess(area: ParkArea) -> Bool
-    func hasRideAccess() -> Bool
+    func validateAreaAccess(area: ParkArea) throws -> Bool
+    func hasRideAccess() throws -> Bool
     func discountAccess(type: DiscountType) throws -> Double
 }
 

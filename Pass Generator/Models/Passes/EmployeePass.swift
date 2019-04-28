@@ -25,17 +25,4 @@ class EmployeePass: ClassicPass {
         self.accessAreas = entrantType.accessAreas()
         
     }
-    
-    override func discountAccess(type: DiscountType) throws -> Double {
-        if swiped { throw SwipeError.swipedTooOften }
-        delaySwipe()
-        isEntrantsBirthday()
-        switch  type {
-        case .foodDiscount:
-            return foodDiscount
-        case .merchandiseDiscount:
-            return merchDiscount
-        }
-    }
-    
 }

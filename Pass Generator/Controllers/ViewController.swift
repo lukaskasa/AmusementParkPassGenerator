@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var pass: Pass?
+    
     let classicGuest = Guest(entrantType: .classic, dateOfBirth: nil)
     let vipGuest = Guest(entrantType: .vip, dateOfBirth: nil)
     let childGuest = Guest(entrantType: .child, dateOfBirth: "04/28/2015")
@@ -23,21 +25,40 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         do {
-            let pass = try manager.generatePass()
-            print("Amusement Park: \(pass.validateAreaAccess(area: .amusement))")
-            print("Kitchen: \(pass.validateAreaAccess(area: .kitchen))")
-            print("Ride Control: \(pass.validateAreaAccess(area: .rideControl))")
-            print("Maintenance: \(pass.validateAreaAccess(area: .maintanance))")
-            print("Office: \(pass.validateAreaAccess(area: .office))")
-            print("Ride Access: \(pass.hasRideAccess())")
-            print("Food discount: \(try pass.discountAccess(type: .foodDiscount))")
-            print("Merchandise discount: \(try pass.discountAccess(type: .merchandiseDiscount))")
-        } catch MissingData.missingFirstName {
+            self.pass = try manager.generatePass()
+        }  catch MissingData.missingFirstName {
             print(MissingData.missingFirstName.rawValue)
         } catch MissingData.missingLastName {
             print(MissingData.missingLastName.rawValue)
         } catch MissingData.missingStreetAddress {
             print(MissingData.missingStreetAddress.rawValue)
+        } catch let error {
+            fatalError("Error: \(error)")
+        }
+        
+        do {
+            print("Food discount: \(try pass?.discountAccess(type: .foodDiscount))")
+            print("Merchandise discount: \(try pass?.discountAccess(type: .merchandiseDiscount))")
+        } catch SwipeError.swipedTooOften {
+            
+        } catch let error {
+            fatalError("Error: \(error)")
+        }
+        
+        do {
+            print("Ride Access: \(try pass?.hasRideAccess())")
+        } catch SwipeError.swipedTooOften {
+            print ("5s Swipe Delay")
+        } catch let error {
+            fatalError("Error: \(error)")
+        }
+        
+        do {
+            print("Amusement Park: \(try pass?.validateAreaAccess(area: .amusement))")
+            print("Kitchen: \(try pass?.validateAreaAccess(area: .kitchen))")
+            print("Ride Control: \(try pass?.validateAreaAccess(area: .rideControl))")
+            print("Maintenance: \(try pass?.validateAreaAccess(area: .maintanance))")
+            print("Office: \(try pass?.validateAreaAccess(area: .office))")
         } catch SwipeError.swipedTooOften {
             print ("5s Swipe Delay")
         } catch let error {

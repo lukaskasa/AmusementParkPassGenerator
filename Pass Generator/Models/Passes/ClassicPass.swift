@@ -9,7 +9,12 @@
 import Foundation
 
 class ClassicPass: Pass {
-    var swiped = false
+    let delay = 5.0
+    
+    var areaAccessSwiped = false,
+    rideAccessSwiped = false,
+    discountAccessSwiped = false
+    
     var entrantType: EntrantType
     
     var firstName: String?
@@ -35,23 +40,30 @@ class ClassicPass: Pass {
     
     }
     
-    func validateAreaAccess(area: ParkArea) -> Bool {
+    func validateAreaAccess(area: ParkArea) throws -> Bool {
         isEntrantsBirthday()
+        if areaAccessSwiped { throw SwipeError.swipedTooOften }
+        areaAccessSwiped = true
+        delaySwipe(of: .area)
         if accessAreas.contains(area) {
             return true
         }
         return false
     }
     
-    func hasRideAccess() -> Bool {
+    func hasRideAccess() throws -> Bool {
         isEntrantsBirthday()
+        if rideAccessSwiped { throw SwipeError.swipedTooOften }
+        rideAccessSwiped = true
+        delaySwipe(of: .ride)
         return true
     }
     
     func discountAccess(type: DiscountType) throws -> Double {
-        if swiped { throw SwipeError.swipedTooOften }
-        delaySwipe()
         isEntrantsBirthday()
+        if discountAccessSwiped { throw SwipeError.swipedTooOften }
+        discountAccessSwiped = true
+        delaySwipe(of: .dicount)
         switch  type {
         case .foodDiscount:
             return foodDiscount
@@ -71,13 +83,17 @@ class ClassicPass: Pass {
         }
     }
     
-    func delaySwipe() {
-        swiped = true
-        if swiped {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                self.swiped = false
-                print("Swipe lock disabled")
+    func delaySwipe(of swipe: SwipeMethod) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            switch swipe {
+            case .area:
+                self.areaAccessSwiped = !self.areaAccessSwiped
+            case .ride:
+                self.rideAccessSwiped = !self.rideAccessSwiped
+            case .dicount:
+                self.discountAccessSwiped = !self.discountAccessSwiped
             }
+            print("Swipe lock disabled")
         }
     }
     

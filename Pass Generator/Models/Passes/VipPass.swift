@@ -21,15 +21,4 @@ class VipPass: ClassicPass {
         self.accessAreas = entrantType.accessAreas()
         self.dateOfBirth = nil
     }
-    
-    override func discountAccess(type: DiscountType) -> Double {
-        isEntrantsBirthday()
-        switch  type {
-        case .foodDiscount:
-            return foodDiscount
-        case .merchandiseDiscount:
-            return merchDiscount
-        }
-    }
-    
 }
