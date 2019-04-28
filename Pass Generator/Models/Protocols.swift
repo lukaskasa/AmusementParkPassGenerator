@@ -21,13 +21,13 @@ enum ParkArea: String {
 // MARK: - Error Types
 
 enum MissingData: String, Error {
-    case missingDateOfBirth
+    case missingDateOfBirth = "Missing Date Of Birth!"
     case missingFirstName = "Missing First Name!"
     case missingLastName = "Missing Last Name!"
-    case missingStreetAddress
-    case missingCity
-    case missingState
-    case missingZipCode
+    case missingStreetAddress = "Missing street address!"
+    case missingCity = "Missing city!"
+    case missingState = "Missing the state!"
+    case missingZipCode = "Missing zip code!"
 }
 
 enum InvalidData: Error {
