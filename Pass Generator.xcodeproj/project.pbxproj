@@ -7,22 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800E725C2279AC930009979F /* ParkCheckpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E725B2279AC930009979F /* ParkCheckpoints.swift */; };
+		800E725E2279ACAE0009979F /* ParkArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E725D2279ACAE0009979F /* ParkArea.swift */; };
+		800E72602279ACED0009979F /* RideAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E725F2279ACED0009979F /* RideAccess.swift */; };
+		800E72622279AD180009979F /* DiscountAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E72612279AD180009979F /* DiscountAccess.swift */; };
+		800E72652279AD550009979F /* InvalidData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E72642279AD550009979F /* InvalidData.swift */; };
+		800E72672279DDE20009979F /* MissingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E72662279DDE20009979F /* MissingData.swift */; };
+		800E726B2279EBE20009979F /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E726A2279EBE20009979F /* PersonalInformation.swift */; };
+		800E726D227C11CE0009979F /* ChildGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E726C227C11CE0009979F /* ChildGuest.swift */; };
+		800E7272227D6CF50009979F /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = 800E7270227D6CF50009979F /* AccessDenied.wav */; };
+		800E7273227D6CF50009979F /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = 800E7271227D6CF50009979F /* AccessGranted.wav */; };
+		800E7279227E07EF0009979F /* EntrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E7278227E07EF0009979F /* EntrantType.swift */; };
+		800E727B227E08360009979F /* SwipeErrror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E727A227E08360009979F /* SwipeErrror.swift */; };
+		800E727D227E085C0009979F /* ParkCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E727C227E085C0009979F /* ParkCheckpoint.swift */; };
 		80DD2C70225DC1AA001CBFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C6F225DC1AA001CBFEC /* AppDelegate.swift */; };
 		80DD2C72225DC1AA001CBFEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C71225DC1AA001CBFEC /* ViewController.swift */; };
 		80DD2C75225DC1AA001CBFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DD2C73225DC1AA001CBFEC /* Main.storyboard */; };
 		80DD2C77225DC1AA001CBFEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80DD2C76225DC1AA001CBFEC /* Assets.xcassets */; };
 		80DD2C7A225DC1AA001CBFEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DD2C78225DC1AA001CBFEC /* LaunchScreen.storyboard */; };
-		80DD2C82225E5EB4001CBFEC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C81225E5EB4001CBFEC /* Protocols.swift */; };
 		80DD2C85225E7BBE001CBFEC /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C84225E7BBE001CBFEC /* Guest.swift */; };
 		80DD2C8F225E7CCA001CBFEC /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C8E225E7CCA001CBFEC /* Employee.swift */; };
-		80DD2CA422645877001CBFEC /* ClassicPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2CA322645877001CBFEC /* ClassicPass.swift */; };
+		80DD2CA422645877001CBFEC /* EntryPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2CA322645877001CBFEC /* EntryPass.swift */; };
 		E4C11135226B02C500E096A3 /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C11134226B02C500E096A3 /* Entrant.swift */; };
-		E4C111372271854900E096A3 /* EmployeePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C111362271854900E096A3 /* EmployeePass.swift */; };
-		E4C111392272D44400E096A3 /* VipPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C111382272D44400E096A3 /* VipPass.swift */; };
-		E4C1113B227370D000E096A3 /* ChildPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1113A227370D000E096A3 /* ChildPass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		800E725B2279AC930009979F /* ParkCheckpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCheckpoints.swift; sourceTree = "<group>"; };
+		800E725D2279ACAE0009979F /* ParkArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkArea.swift; sourceTree = "<group>"; };
+		800E725F2279ACED0009979F /* RideAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideAccess.swift; sourceTree = "<group>"; };
+		800E72612279AD180009979F /* DiscountAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountAccess.swift; sourceTree = "<group>"; };
+		800E72642279AD550009979F /* InvalidData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidData.swift; sourceTree = "<group>"; };
+		800E72662279DDE20009979F /* MissingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingData.swift; sourceTree = "<group>"; };
+		800E726A2279EBE20009979F /* PersonalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformation.swift; sourceTree = "<group>"; };
+		800E726C227C11CE0009979F /* ChildGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildGuest.swift; sourceTree = "<group>"; };
+		800E7270227D6CF50009979F /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
+		800E7271227D6CF50009979F /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
+		800E7278227E07EF0009979F /* EntrantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantType.swift; sourceTree = "<group>"; };
+		800E727A227E08360009979F /* SwipeErrror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeErrror.swift; sourceTree = "<group>"; };
+		800E727C227E085C0009979F /* ParkCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCheckpoint.swift; sourceTree = "<group>"; };
 		80DD2C6C225DC1AA001CBFEC /* Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DD2C6F225DC1AA001CBFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80DD2C71225DC1AA001CBFEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,14 +52,10 @@
 		80DD2C76225DC1AA001CBFEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80DD2C79225DC1AA001CBFEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80DD2C7B225DC1AA001CBFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80DD2C81225E5EB4001CBFEC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		80DD2C84225E7BBE001CBFEC /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		80DD2C8E225E7CCA001CBFEC /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
-		80DD2CA322645877001CBFEC /* ClassicPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPass.swift; sourceTree = "<group>"; };
+		80DD2CA322645877001CBFEC /* EntryPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPass.swift; sourceTree = "<group>"; };
 		E4C11134226B02C500E096A3 /* Entrant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
-		E4C111362271854900E096A3 /* EmployeePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeePass.swift; sourceTree = "<group>"; };
-		E4C111382272D44400E096A3 /* VipPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipPass.swift; sourceTree = "<group>"; };
-		E4C1113A227370D000E096A3 /* ChildPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildPass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +69,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800E72592279AC6A0009979F /* ParkCheckpoints */ = {
+			isa = PBXGroup;
+			children = (
+				800E725B2279AC930009979F /* ParkCheckpoints.swift */,
+			);
+			path = ParkCheckpoints;
+			sourceTree = "<group>";
+		};
+		800E725A2279AC760009979F /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				800E7278227E07EF0009979F /* EntrantType.swift */,
+				800E726A2279EBE20009979F /* PersonalInformation.swift */,
+				800E725D2279ACAE0009979F /* ParkArea.swift */,
+				800E725F2279ACED0009979F /* RideAccess.swift */,
+				800E72612279AD180009979F /* DiscountAccess.swift */,
+				800E727C227E085C0009979F /* ParkCheckpoint.swift */,
+				800E72632279AD2D0009979F /* Errors */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		800E72632279AD2D0009979F /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				800E72642279AD550009979F /* InvalidData.swift */,
+				800E72662279DDE20009979F /* MissingData.swift */,
+				800E727A227E08360009979F /* SwipeErrror.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		800E726E227D6C880009979F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				800E726F227D6C990009979F /* Sounds */,
+				80DD2C76225DC1AA001CBFEC /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		800E726F227D6C990009979F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				800E7270227D6CF50009979F /* AccessDenied.wav */,
+				800E7271227D6CF50009979F /* AccessGranted.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		80DD2C63225DC1AA001CBFEC = {
 			isa = PBXGroup;
 			children = (
@@ -73,7 +141,7 @@
 				80DD2C83225E5EB8001CBFEC /* Models */,
 				80DD2C9D22622778001CBFEC /* Views */,
 				80DD2C9E2262278E001CBFEC /* Controllers */,
-				80DD2C76225DC1AA001CBFEC /* Assets.xcassets */,
+				800E726E227D6C880009979F /* Assets */,
 				80DD2C6F225DC1AA001CBFEC /* AppDelegate.swift */,
 				80DD2C7B225DC1AA001CBFEC /* Info.plist */,
 			);
@@ -83,9 +151,10 @@
 		80DD2C83225E5EB8001CBFEC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				80DD2C81225E5EB4001CBFEC /* Protocols.swift */,
+				800E725A2279AC760009979F /* Types */,
 				80DD2C86225E7BD7001CBFEC /* Entrants */,
-				80DD2C9C22622745001CBFEC /* Passes */,
+				80DD2C9C22622745001CBFEC /* Pass */,
+				800E72592279AC6A0009979F /* ParkCheckpoints */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,20 +164,18 @@
 			children = (
 				E4C11134226B02C500E096A3 /* Entrant.swift */,
 				80DD2C84225E7BBE001CBFEC /* Guest.swift */,
+				800E726C227C11CE0009979F /* ChildGuest.swift */,
 				80DD2C8E225E7CCA001CBFEC /* Employee.swift */,
 			);
 			path = Entrants;
 			sourceTree = "<group>";
 		};
-		80DD2C9C22622745001CBFEC /* Passes */ = {
+		80DD2C9C22622745001CBFEC /* Pass */ = {
 			isa = PBXGroup;
 			children = (
-				80DD2CA322645877001CBFEC /* ClassicPass.swift */,
-				E4C111382272D44400E096A3 /* VipPass.swift */,
-				E4C1113A227370D000E096A3 /* ChildPass.swift */,
-				E4C111362271854900E096A3 /* EmployeePass.swift */,
+				80DD2CA322645877001CBFEC /* EntryPass.swift */,
 			);
-			path = Passes;
+			path = Pass;
 			sourceTree = "<group>";
 		};
 		80DD2C9D22622778001CBFEC /* Views */ = {
@@ -187,8 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				80DD2C7A225DC1AA001CBFEC /* LaunchScreen.storyboard in Resources */,
+				800E7273227D6CF50009979F /* AccessGranted.wav in Resources */,
 				80DD2C77225DC1AA001CBFEC /* Assets.xcassets in Resources */,
 				80DD2C75225DC1AA001CBFEC /* Main.storyboard in Resources */,
+				800E7272227D6CF50009979F /* AccessDenied.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,16 +268,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800E72672279DDE20009979F /* MissingData.swift in Sources */,
 				80DD2C72225DC1AA001CBFEC /* ViewController.swift in Sources */,
-				E4C1113B227370D000E096A3 /* ChildPass.swift in Sources */,
+				800E72602279ACED0009979F /* RideAccess.swift in Sources */,
+				800E72622279AD180009979F /* DiscountAccess.swift in Sources */,
+				800E725C2279AC930009979F /* ParkCheckpoints.swift in Sources */,
 				80DD2C8F225E7CCA001CBFEC /* Employee.swift in Sources */,
-				E4C111392272D44400E096A3 /* VipPass.swift in Sources */,
+				800E726B2279EBE20009979F /* PersonalInformation.swift in Sources */,
+				800E727D227E085C0009979F /* ParkCheckpoint.swift in Sources */,
+				800E726D227C11CE0009979F /* ChildGuest.swift in Sources */,
 				80DD2C70225DC1AA001CBFEC /* AppDelegate.swift in Sources */,
-				80DD2CA422645877001CBFEC /* ClassicPass.swift in Sources */,
+				80DD2CA422645877001CBFEC /* EntryPass.swift in Sources */,
+				800E7279227E07EF0009979F /* EntrantType.swift in Sources */,
 				80DD2C85225E7BBE001CBFEC /* Guest.swift in Sources */,
+				800E725E2279ACAE0009979F /* ParkArea.swift in Sources */,
 				E4C11135226B02C500E096A3 /* Entrant.swift in Sources */,
-				E4C111372271854900E096A3 /* EmployeePass.swift in Sources */,
-				80DD2C82225E5EB4001CBFEC /* Protocols.swift in Sources */,
+				800E72652279AD550009979F /* InvalidData.swift in Sources */,
+				800E727B227E08360009979F /* SwipeErrror.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

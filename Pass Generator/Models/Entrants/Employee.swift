@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Employee Type of Entrant Type
 enum EmployeeType: String, EntrantType {
     case foodService = "Employee - Food Service"
     case rideService = "Employee - Ride Service"
@@ -27,45 +28,79 @@ enum EmployeeType: String, EntrantType {
         }
     }
     
-    func rideAccess() -> String {
+    func rideAccess() -> [RideAccess] {
         switch self {
         case .foodService, .rideService, .maintenance, .manager:
-            return "Access all rides"
+            return [.unlimited]
+        }
+    }
+    
+    func discountAccess() -> [DiscountAccess] {
+        switch self {
+        case .foodService, .rideService, .maintenance:
+            return [.foodDiscount(percentage: 15.0), .merchandiseDiscount(percentage: 25.0)]
+        case .manager:
+            return [.foodDiscount(percentage: 25.0), .merchandiseDiscount(percentage: 25.0)]
         }
     }
     
 }
 
-class Employee: Entrant, Nameable, Addressable {
+/// Employee object - represents the entrants for food-, ride service, maintenance and manage employee types
+class Employee: Entrant {
     
-    // Properties
-    var firstName: String
-    var lastName: String
-    var streetAddress: String
-    var city: String
-    var state: String
-    var zipCode: String
+    /// Properties
+    var entrantType: EntrantType
     
-    init(entrantType: EmployeeType, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.streetAddress = streetAddress
-        self.city = city
-        self.state = state
-        self.zipCode = zipCode
-        super.init(entrantType: entrantType)
+    var accessAreas: [ParkArea] {
+        return entrantType.accessAreas()
     }
     
-    override func generatePass() throws -> Pass {
+    var rideAccess: [RideAccess] {
+        return entrantType.rideAccess()
+    }
+    
+    var discountAccess: [DiscountAccess] {
+        return entrantType.discountAccess()
+    }
+    
+    var dateOfBirth: Date?
+    var personalInformation: PersonalInformation?
+    
+    /**
+     Initializes a new Employee object
+     
+     - Parameters:
+     - entrantType: EmployeeType (kitchenService, rideService, maintenance, manager)
+     - firstName: Employees first name
+     - lastName: Employees last name
+     - streetAddress: Employees street address
+     - city: Employees city
+     - state: Employees state
+     - zipCode: Employees zipCode
+     
+     - Throws:
+     'MissingData.missingFirstName'- if no first name is provided
+     'MissingData.missingLastName' - if not last name is provded
+     'MissingData.missingStreetAddress' - if no street address is provided
+     'MissingData.missingCity' - if no city is provided
+     'MissingData.missingState' - if no state is provided
+     'MissingData.missingZipCode' - if no zip code is provided
+     
+     
+     - Returns: A child guest with access permissions
+     */
+    init(entrantType: EmployeeType, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+        self.entrantType = entrantType
         
-        if firstName == "" { throw MissingData.missingFirstName}
+        if firstName == "" { throw MissingData.missingFirstName }
         if lastName == "" { throw MissingData.missingLastName }
         if streetAddress == "" { throw MissingData.missingStreetAddress }
         if city == "" { throw MissingData.missingCity }
         if state == "" { throw MissingData.missingState }
         if zipCode == "" { throw MissingData.missingZipCode }
         
-        return EmployeePass(entrantType: entrantType, firstName: firstName, lastName: lastName)
+        self.personalInformation = PersonalInformation(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
     }
     
 }

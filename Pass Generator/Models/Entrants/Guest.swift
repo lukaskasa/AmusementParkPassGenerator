@@ -8,7 +8,9 @@
 
 import Foundation
 
+/// Guest Type of Entrant Type
 enum GuestType: String, EntrantType {
+
     case classic = "Normal Guest"
     case vip = "VIP Guest"
     case child = "Child Guest"
@@ -20,75 +22,57 @@ enum GuestType: String, EntrantType {
         }
     }
     
-    func rideAccess() -> String {
+    func rideAccess() -> [RideAccess] {
         switch self {
-        case .classic, .child, .vip:
-            return "Access all rides"
+        case .classic, .child:
+            return [.unlimited]
+        case .vip:
+            return [.unlimited, .skipLines]
         }
     }
     
-    func canSkipRides() -> Bool {
+    func discountAccess() -> [DiscountAccess] {
         switch self {
-        case .vip:
-            return true
         case .classic, .child:
-            return false
+            return [.foodDiscount(percentage: 0), .merchandiseDiscount(percentage: 0)]
+        case .vip:
+            return [.foodDiscount(percentage: 10.0), .merchandiseDiscount(percentage: 20.0)]
         }
     }
 }
 
+/// Guest object - represents the entrants for classic and vip
 class Guest: Entrant {
 
-    var dateOfBirth: String?
-    let childAgeLimit = 5.0
+    /// Properties
+    var entrantType: EntrantType
     
-    init(entrantType: GuestType, dateOfBirth: String?) {
-        if let dateOfBirth = dateOfBirth {
-            self.dateOfBirth = dateOfBirth
-        }
-        super.init(entrantType: entrantType)
-    }
-    
-    override func generatePass() throws -> Pass {
-        switch entrantType {
-        case GuestType.classic:
-            return ClassicPass(entrantType: entrantType, firstName: nil, lastName: nil, dateOfBirth: nil)
-        case GuestType.vip:
-            return VipPass(entrantType: entrantType, firstName: nil, lastName: nil, dateOfBirth: nil)
-        case GuestType.child:
-            guard let dateOfBirth = dateOfBirth else {
-                throw InvalidData.invalidDateOfBirth
-            }
-            if isChildUnderFive(dateOfBirth: convertStringToDate(dateOfBirth: dateOfBirth)) {
-                return ChildPass(entrantType: entrantType, firstName: nil, lastName: nil, dateOfBirth: convertStringToDate(dateOfBirth: dateOfBirth))
-            } else {
-                throw InvalidData.childIsTooOld
-            }
-        default:
-            return ClassicPass(entrantType: entrantType, firstName: nil, lastName: nil, dateOfBirth: nil)
-        }
-    }
-    
-    
-    func convertStringToDate(dateOfBirth: String) -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
-        guard let dateOfBirth = formatter.date(from: dateOfBirth) else { fatalError("Could not convert String to date!") }
-        return dateOfBirth
+    var accessAreas: [ParkArea] {
+        return entrantType.accessAreas()
     }
 
+    var rideAccess: [RideAccess] {
+        return entrantType.rideAccess()
+    }
+
+    var discountAccess: [DiscountAccess] {
+        return entrantType.discountAccess()
+    }
     
-    func isChildUnderFive(dateOfBirth: Date) -> Bool {
-        let leapYearDay = childAgeLimit * 0.25
-        let timeSinceNowInSeconds = TimeInterval((-self.childAgeLimit * 31536000) - leapYearDay * 86400)
-        let fiveYearsAgo = Date(timeIntervalSinceNow: timeSinceNowInSeconds)
-        var isUnderFive = false
-
-        if dateOfBirth > fiveYearsAgo {
-            isUnderFive = true
-        }
-
-        return isUnderFive
+    var personalInformation: PersonalInformation?
+    
+    var dateOfBirth: Date?
+    
+    /**
+     Initializes a new Guest object
+     
+     - Parameters:
+     - entrantType: The type of guest type
+     
+     - Returns: A guest object with access permissions
+     */
+    init(entrantType: GuestType) {
+        self.entrantType = entrantType
     }
     
 }

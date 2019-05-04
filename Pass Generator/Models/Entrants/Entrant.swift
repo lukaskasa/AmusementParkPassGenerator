@@ -8,16 +8,12 @@
 
 import Foundation
 
-class Entrant: Generatable {
-    
-    var entrantType: EntrantType
-    
-    init(entrantType: EntrantType) {
-        self.entrantType = entrantType
-    }
-    
-    func generatePass() throws -> Pass {
-        return ClassicPass(entrantType: GuestType.classic, firstName: nil, lastName: nil, dateOfBirth: nil)
-    }
-
+/// Blueprint for an entrant type
+protocol Entrant {
+    var entrantType: EntrantType { get }
+    var accessAreas: [ParkArea] { get }
+    var rideAccess: [RideAccess] { get }
+    var discountAccess: [DiscountAccess] { get }
+    var dateOfBirth: Date? { get set }
+    var personalInformation: PersonalInformation? { get set }
 }
