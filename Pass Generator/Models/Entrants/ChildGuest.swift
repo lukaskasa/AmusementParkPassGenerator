@@ -33,7 +33,6 @@ class ChildGuest: Guest {
             self.dateOfBirth = try? convertStringToDate(dateOfBirth: dateOfBirthDate)
             guard let dOB = self.dateOfBirth else { throw InvalidData.invalidDateOfBirth }
             if !isChildUnderFive(dateOfBirth: dOB) {
-                print("The child is too old for the child pass!")
                 throw InvalidData.childIsTooOld
             }
         }
