@@ -56,6 +56,10 @@ class ViewController: UIViewController {
         
         // testChildGuestErrorChildtooOld()
         
+        // Test Case - Birthday
+        
+        // testChildGuestBirthdayAlert(dateOfBirth: "05/05/2015")
+        
         /// Test Case - Test Emplpoyees (Food- and Ride Service + Manager) -> Swipe at each location, ride access and discount access
         
         //testEmployees()
@@ -221,6 +225,27 @@ class ViewController: UIViewController {
                 print("Food Discount: \(childGuestPass.entrant!.discountAccess[0].discountAmount)%")
                 print("Merch Discount: \(childGuestPass.entrant!.discountAccess[1].discountAmount)%")
             }
+        } catch InvalidData.invalidDateOfBirth {
+            print("Invalid Date of Birth!")
+        } catch InvalidData.childIsTooOld {
+            print("Child is too old!")
+        } catch MissingData.missingDateOfBirth {
+            print("Please provide a Date of Birth for the child!")
+        } catch let error {
+            fatalError("Error occured: \(error)")
+        }
+    }
+    
+    func testChildGuestBirthdayAlert(dateOfBirth: String) {
+        // Test Cases - Child Guest
+        do {
+            // Format - MM/DD/YYYY
+            let childGuest = try ChildGuest(dateOfBirth: dateOfBirth)
+            let childGuestPass = EntryPass(for: childGuest)
+            
+            // Test Ride Access
+            print("Ride Access: \(childGuestPass.swipePass(at: rideTurnstile))")
+
         } catch InvalidData.invalidDateOfBirth {
             print("Invalid Date of Birth!")
         } catch InvalidData.childIsTooOld {
