@@ -28,21 +28,14 @@ class ChildGuest: Guest {
      */
     init(dateOfBirth: String?) throws {
         super.init(entrantType: .child)
+        if dateOfBirth == "" { throw MissingData.missingDateOfBirth }
         if let dateOfBirthDate = dateOfBirth {
-            do {
-                self.dateOfBirth = try convertStringToDate(dateOfBirth: dateOfBirthDate)
-            } catch InvalidData.invalidDateOfBirth {
-                print("Date has the incorrect format!")
-            } catch let error {
-                fatalError("Error: \(error)")
-            }
+            self.dateOfBirth = try? convertStringToDate(dateOfBirth: dateOfBirthDate)
             guard let dOB = self.dateOfBirth else { throw InvalidData.invalidDateOfBirth }
             if !isChildUnderFive(dateOfBirth: dOB) {
                 print("The child is too old for the child pass!")
                 throw InvalidData.childIsTooOld
             }
-        } else if dateOfBirth == "" {
-            throw MissingData.missingDateOfBirth
         }
     }
     

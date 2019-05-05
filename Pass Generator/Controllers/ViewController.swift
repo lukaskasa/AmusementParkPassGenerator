@@ -30,8 +30,48 @@ class ViewController: UIViewController {
         
         parkLocations = [amusementArea, kitchenArea, rideControlArea, maintenance, office]
         
-        // Test Cases - Classic Guest
+        // MARK: - Test cases
         
+        /// Test Case - Classic Guest -> Swipe at each location, ride access and discount access
+        
+        //testClassicGuest()
+        
+        /// Test Case - Test Vip Guest -> Swipe at each location, ride access and discount access
+        
+        // testVipGuest()
+        
+        /// Test Case - Test Child Guest -> Swipe at each location, ride access and discount access
+        
+        // testChildGuest()
+        
+        /// Test Case - Child with no Date of Birth
+        
+        // testChildGuestErrorNoDOB()
+        
+        /// Test Case - Date of Birth is invalid
+    
+        /// testChildGuestErrorInvalidDOB()
+        
+        // Test Case - Child is too old
+        
+        // testChildGuestErrorChildtooOld()
+        
+        /// Test Case - Test Emplpoyees (Food- and Ride Service + Manager) -> Swipe at each location, ride access and discount access
+        
+        //testEmployees()
+        
+        /// Test Case - Employee with missing first name
+        
+        // testEmployeesErrorMissingInfo()
+        
+        /// Test Case - Vip Guest Swipes Pass twice within 5 seconds (two method calls within 5 seconds)
+        
+        // testVipGuestErroSwipesTwice()
+        
+    }
+    
+    func testClassicGuest() {
+        // Test Cases - Classic Guest
         // Classic Guest
         let classicGuest = Guest(entrantType: .classic)
         // Pass
@@ -49,6 +89,9 @@ class ViewController: UIViewController {
             print("Food Discount: \(classicGuestPass.entrant!.discountAccess[0].discountAmount)%")
             print("Merch Discount: \(classicGuestPass.entrant!.discountAccess[1].discountAmount)%")
         }
+    }
+    
+    func testVipGuest() {
         // Test Cases - Vip Guest
         let vipGuest = Guest(entrantType: .vip)
         // Pass
@@ -66,7 +109,21 @@ class ViewController: UIViewController {
             print("Food Discount: \(vipGuestPass.entrant!.discountAccess[0].discountAmount)%")
             print("Merch Discount: \(vipGuestPass.entrant!.discountAccess[1].discountAmount)%")
         }
+    }
+    
+    func testVipGuestErroSwipesTwice() {
+        // Test Cases - Vip Guest
+        let vipGuest = Guest(entrantType: .vip)
+        // Pass
+        let vipGuestPass = EntryPass(for: vipGuest)
         
+        // Test Ride Access
+        print("Skip all ride Lines: \(vipGuestPass.swipePass(at: fastAccessLane))")
+        print("Ride Access: \(vipGuestPass.swipePass(at: fastAccessLane))")
+    }
+    
+    
+    func testChildGuest() {
         // Test Cases - Child Guest
         do {
             let childGuest = try ChildGuest(dateOfBirth: "04/12/2015")
@@ -91,9 +148,93 @@ class ViewController: UIViewController {
         } catch let error {
             fatalError("Error occured: \(error)")
         }
-        
-        // Test Cases - Employee - Food Service
+    }
+    
+    func testChildGuestErrorNoDOB() {
+        // Test Cases - Child Guest
         do {
+            let childGuest = try ChildGuest(dateOfBirth: "")
+            let childGuestPass = EntryPass(for: childGuest)
+            // Test Location Access
+            testLocationAccess(pass: childGuestPass)
+            // Test Ride Access
+            print("Ride Access: \(childGuestPass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(childGuestPass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(childGuestPass.swipePass(at: fastAccessLane))")
+            print("Discount Available: \(childGuestPass.swipePass(at: parkKioskRegister))")
+            if childGuestPass.swipePass(at: parkKioskRegister) {
+                print("Food Discount: \(childGuestPass.entrant!.discountAccess[0].discountAmount)%")
+                print("Merch Discount: \(childGuestPass.entrant!.discountAccess[1].discountAmount)%")
+            }
+        } catch InvalidData.invalidDateOfBirth {
+            print("Invalid Date of Birth!")
+        } catch InvalidData.childIsTooOld {
+            print("Child is too old!")
+        } catch MissingData.missingDateOfBirth {
+            print("Please provide a Date of Birth for the child!")
+        } catch let error {
+            fatalError("Error occured: \(error)")
+        }
+    }
+    
+    func testChildGuestErrorInvalidDOB() {
+        // Test Cases - Child Guest
+        do {
+            let childGuest = try ChildGuest(dateOfBirth: "32/11/11")
+            let childGuestPass = EntryPass(for: childGuest)
+            // Test Location Access
+            testLocationAccess(pass: childGuestPass)
+            // Test Ride Access
+            print("Ride Access: \(childGuestPass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(childGuestPass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(childGuestPass.swipePass(at: fastAccessLane))")
+            print("Discount Available: \(childGuestPass.swipePass(at: parkKioskRegister))")
+            if childGuestPass.swipePass(at: parkKioskRegister) {
+                print("Food Discount: \(childGuestPass.entrant!.discountAccess[0].discountAmount)%")
+                print("Merch Discount: \(childGuestPass.entrant!.discountAccess[1].discountAmount)%")
+            }
+        } catch InvalidData.invalidDateOfBirth {
+            print("Invalid Date of Birth!")
+        } catch InvalidData.childIsTooOld {
+            print("Child is too old!")
+        } catch MissingData.missingDateOfBirth {
+            print("Please provide a Date of Birth for the child!")
+        } catch let error {
+            fatalError("Error occured: \(error)")
+        }
+    }
+    
+    func testChildGuestErrorChildtooOld() {
+        // Test Cases - Child Guest
+        do {
+            // Format - MM/DD/YYYY
+            let childGuest = try ChildGuest(dateOfBirth: "04/11/2005")
+            let childGuestPass = EntryPass(for: childGuest)
+            // Test Location Access
+            testLocationAccess(pass: childGuestPass)
+            // Test Ride Access
+            print("Ride Access: \(childGuestPass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(childGuestPass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(childGuestPass.swipePass(at: fastAccessLane))")
+            print("Discount Available: \(childGuestPass.swipePass(at: parkKioskRegister))")
+            if childGuestPass.swipePass(at: parkKioskRegister) {
+                print("Food Discount: \(childGuestPass.entrant!.discountAccess[0].discountAmount)%")
+                print("Merch Discount: \(childGuestPass.entrant!.discountAccess[1].discountAmount)%")
+            }
+        } catch InvalidData.invalidDateOfBirth {
+            print("Invalid Date of Birth!")
+        } catch InvalidData.childIsTooOld {
+            print("Child is too old!")
+        } catch MissingData.missingDateOfBirth {
+            print("Please provide a Date of Birth for the child!")
+        } catch let error {
+            fatalError("Error occured: \(error)")
+        }
+    }
+    
+    func testEmployees() {
+        do {
+            // Test Cases - Employee - Food
             let foodEmployee = try Employee(entrantType: .foodService, firstName: "Lukas", lastName: "Kasakaitis", streetAddress: "1 Main Street", city: "Munich", state: "Bavaria", zipCode: "81669")
             let foodEmployeePass = EntryPass(for: foodEmployee)
             testLocationAccess(pass: foodEmployeePass)
@@ -106,25 +247,7 @@ class ViewController: UIViewController {
                 print("Food Discount: \(foodEmployeePass.entrant!.discountAccess[0].discountAmount)%")
                 print("Merch Discount: \(foodEmployeePass.entrant!.discountAccess[1].discountAmount)%")
             }
-            
-        } catch MissingData.missingFirstName {
-            print(MissingData.missingFirstName.rawValue)
-        } catch MissingData.missingLastName {
-            print(MissingData.missingLastName.rawValue)
-        } catch MissingData.missingStreetAddress {
-            print(MissingData.missingStreetAddress.rawValue)
-        } catch MissingData.missingCity {
-            print(MissingData.missingCity.rawValue)
-        } catch MissingData.missingState {
-            print(MissingData.missingState.rawValue)
-        } catch MissingData.missingZipCode {
-            print(MissingData.missingZipCode.rawValue)
-        } catch let error {
-            fatalError("Error occured: \(error)")
-        }
-        
-        // Test Cases - Employee - Ride Service
-        do {
+            // Test Cases - Employee - Ride
             let rideEmployee = try Employee(entrantType: .rideService, firstName: "Lukas", lastName: "Kasakaitis", streetAddress: "1 Main Street", city: "Munich", state: "Bavaria", zipCode: "81669")
             let rideEmployeePass = EntryPass(for: rideEmployee)
             testLocationAccess(pass: rideEmployeePass)
@@ -136,24 +259,7 @@ class ViewController: UIViewController {
                 print("Food Discount: \(rideEmployeePass.entrant!.discountAccess[0].discountAmount)%")
                 print("Merch Discount: \(rideEmployeePass.entrant!.discountAccess[1].discountAmount)%")
             }
-        } catch MissingData.missingFirstName {
-            print(MissingData.missingFirstName.rawValue)
-        } catch MissingData.missingLastName {
-            print(MissingData.missingLastName.rawValue)
-        } catch MissingData.missingStreetAddress {
-            print(MissingData.missingStreetAddress.rawValue)
-        } catch MissingData.missingCity {
-            print(MissingData.missingCity.rawValue)
-        } catch MissingData.missingState {
-            print(MissingData.missingState.rawValue)
-        } catch MissingData.missingZipCode {
-            print(MissingData.missingZipCode.rawValue)
-        } catch let error {
-            fatalError("Error occured: \(error)")
-        }
-        
-        // Test Cases - Employee - Maintenance
-        do {
+            // Test Cases - Employee - Maintenance
             let maintenanceEmployee = try Employee(entrantType: .maintenance, firstName: "Lukas", lastName: "Kasakaitis", streetAddress: "1 Main Street", city: "Munich", state: "Bavaria", zipCode: "81669")
             let maintenanceEmployeePass = EntryPass(for: maintenanceEmployee)
             testLocationAccess(pass: maintenanceEmployeePass)
@@ -164,6 +270,18 @@ class ViewController: UIViewController {
             if maintenanceEmployeePass.swipePass(at: parkKioskRegister) {
                 print("Food Discount: \(maintenanceEmployeePass.entrant!.discountAccess[0].discountAmount)%")
                 print("Merch Discount: \(maintenanceEmployeePass.entrant!.discountAccess[1].discountAmount)%")
+            }
+            // Test Cases - Employee - Manager
+            let manager = try Employee(entrantType: .manager, firstName: "Lukas", lastName: "Kasakaitis", streetAddress: "1 Main Street", city: "Munich", state: "Bavaria", zipCode: "81669")
+            let managerPass = EntryPass(for: manager)
+            // Test Ride Access
+            testLocationAccess(pass: managerPass)
+            print("Ride Access: \(managerPass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(managerPass.swipePass(at: rideTurnstile))")
+            //print("Skip all ride Lines: \(managerPass.swipePass(at: fastAccessLane))")
+            if managerPass.swipePass(at: parkKioskRegister) {
+                print("Food Discount: \(managerPass.entrant!.discountAccess[0].discountAmount)%")
+                print("Merch Discount: \(managerPass.entrant!.discountAccess[1].discountAmount)%")
             }
         } catch MissingData.missingFirstName {
             print(MissingData.missingFirstName.rawValue)
@@ -180,19 +298,23 @@ class ViewController: UIViewController {
         } catch let error {
             fatalError("Error occured: \(error)")
         }
-        
-        // Test Cases - Employee - Manager
+
+    }
+    
+    func testEmployeesErrorMissingInfo() {
         do {
-            let manager = try Employee(entrantType: .manager, firstName: "Lukas", lastName: "Kasakaitis", streetAddress: "1 Main Street", city: "Munich", state: "Bavaria", zipCode: "81669")
-            let managerPass = EntryPass(for: manager)
+            // Test Cases - Employee - Food
+            let foodEmployee = try Employee(entrantType: .foodService, firstName: "", lastName: "Kasakaitis", streetAddress: "1 Main Street", city: "Munich", state: "Bavaria", zipCode: "81669")
+            let foodEmployeePass = EntryPass(for: foodEmployee)
+            testLocationAccess(pass: foodEmployeePass)
             // Test Ride Access
-            testLocationAccess(pass: managerPass)
-            print("Ride Access: \(managerPass.swipePass(at: rideTurnstile))")
-            //print("Ride Access: \(managerPass.swipePass(at: rideTurnstile))")
-            //print("Skip all ride Lines: \(managerPass.swipePass(at: fastAccessLane))")
-            if managerPass.swipePass(at: parkKioskRegister) {
-                print("Food Discount: \(managerPass.entrant!.discountAccess[0].discountAmount)%")
-                print("Merch Discount: \(managerPass.entrant!.discountAccess[1].discountAmount)%")
+            print("Ride Access: \(foodEmployeePass.swipePass(at: rideTurnstile))")
+            //print("Ride Access: \(foodEmployeePass.swipePass(at: rideTurnstile))")
+            //print("Skip all ride Lines: \(foodEmployeePass.swipePass(at: fastAccessLane))")
+            print("Discount Available: \(foodEmployeePass.swipePass(at: parkKioskRegister))")
+            if foodEmployeePass.swipePass(at: parkKioskRegister) {
+                print("Food Discount: \(foodEmployeePass.entrant!.discountAccess[0].discountAmount)%")
+                print("Merch Discount: \(foodEmployeePass.entrant!.discountAccess[1].discountAmount)%")
             }
         } catch MissingData.missingFirstName {
             print(MissingData.missingFirstName.rawValue)
