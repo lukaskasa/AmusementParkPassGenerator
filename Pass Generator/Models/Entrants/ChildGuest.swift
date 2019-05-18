@@ -30,28 +30,12 @@ class ChildGuest: Guest {
         super.init(entrantType: .child)
         if dateOfBirth == "" { throw MissingData.missingDateOfBirth }
         if let dateOfBirthDate = dateOfBirth {
-            self.dateOfBirth = try? convertStringToDate(dateOfBirth: dateOfBirthDate)
+            self.dateOfBirth = try? dateOfBirthDate.convertToDate()
             guard let dOB = self.dateOfBirth else { throw InvalidData.invalidDateOfBirth }
             if !isChildUnderFive(dateOfBirth: dOB) {
                 throw InvalidData.childIsTooOld
             }
         }
-    }
-    
-    /**
-     Converts a String into a Date given the correct format
-     
-     - Parameter dateOfBirth: The childs date of birth
-     
-     - Throws: 'InvalidData.invalidDateOfBirth'- if date provided is not valid.
-     
-     - Returns: Date of birth as a Date type
-     */
-    func convertStringToDate(dateOfBirth: String) throws -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
-        guard let dateOfBirth = formatter.date(from: dateOfBirth) else { throw InvalidData.invalidDateOfBirth }
-        return dateOfBirth
     }
     
     /**

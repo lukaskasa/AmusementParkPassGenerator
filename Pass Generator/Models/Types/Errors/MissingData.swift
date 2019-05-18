@@ -17,4 +17,5 @@ enum MissingData: String, Error {
     case missingCity = "Missing city!"
     case missingState = "Missing the state!"
     case missingZipCode = "Missing zip code!"
+    case missingDateOfVisit = "Mssing Date of Visit!"
 }

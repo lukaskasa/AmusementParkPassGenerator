@@ -20,6 +20,10 @@
 		800E7279227E07EF0009979F /* EntrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E7278227E07EF0009979F /* EntrantType.swift */; };
 		800E727B227E08360009979F /* SwipeErrror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E727A227E08360009979F /* SwipeErrror.swift */; };
 		800E727D227E085C0009979F /* ParkCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E727C227E085C0009979F /* ParkCheckpoint.swift */; };
+		80B0C58D228F3A7900DB148B /* SeasonPassGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0C58C228F3A7900DB148B /* SeasonPassGuest.swift */; };
+		80B0C58F228F3BED00DB148B /* SeniorGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0C58E228F3BED00DB148B /* SeniorGuest.swift */; };
+		80B0C591228F424600DB148B /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0C590228F424600DB148B /* Vendor.swift */; };
+		80B0C596228FEBE200DB148B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0C595228FEBE200DB148B /* String.swift */; };
 		80DD2C70225DC1AA001CBFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C6F225DC1AA001CBFEC /* AppDelegate.swift */; };
 		80DD2C72225DC1AA001CBFEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DD2C71225DC1AA001CBFEC /* ViewController.swift */; };
 		80DD2C75225DC1AA001CBFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DD2C73225DC1AA001CBFEC /* Main.storyboard */; };
@@ -45,6 +49,10 @@
 		800E7278227E07EF0009979F /* EntrantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantType.swift; sourceTree = "<group>"; };
 		800E727A227E08360009979F /* SwipeErrror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeErrror.swift; sourceTree = "<group>"; };
 		800E727C227E085C0009979F /* ParkCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCheckpoint.swift; sourceTree = "<group>"; };
+		80B0C58C228F3A7900DB148B /* SeasonPassGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonPassGuest.swift; sourceTree = "<group>"; };
+		80B0C58E228F3BED00DB148B /* SeniorGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuest.swift; sourceTree = "<group>"; };
+		80B0C590228F424600DB148B /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
+		80B0C595228FEBE200DB148B /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		80DD2C6C225DC1AA001CBFEC /* Pass Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pass Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DD2C6F225DC1AA001CBFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80DD2C71225DC1AA001CBFEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +127,14 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		80B0C594228FEBBC00DB148B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				80B0C595228FEBE200DB148B /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		80DD2C63225DC1AA001CBFEC = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +167,7 @@
 		80DD2C83225E5EB8001CBFEC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				80B0C594228FEBBC00DB148B /* Extensions */,
 				800E725A2279AC760009979F /* Types */,
 				80DD2C86225E7BD7001CBFEC /* Entrants */,
 				80DD2C9C22622745001CBFEC /* Pass */,
@@ -165,7 +182,10 @@
 				E4C11134226B02C500E096A3 /* Entrant.swift */,
 				80DD2C84225E7BBE001CBFEC /* Guest.swift */,
 				800E726C227C11CE0009979F /* ChildGuest.swift */,
+				80B0C58C228F3A7900DB148B /* SeasonPassGuest.swift */,
+				80B0C58E228F3BED00DB148B /* SeniorGuest.swift */,
 				80DD2C8E225E7CCA001CBFEC /* Employee.swift */,
+				80B0C590228F424600DB148B /* Vendor.swift */,
 			);
 			path = Entrants;
 			sourceTree = "<group>";
@@ -269,9 +289,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				800E72672279DDE20009979F /* MissingData.swift in Sources */,
+				80B0C58F228F3BED00DB148B /* SeniorGuest.swift in Sources */,
 				80DD2C72225DC1AA001CBFEC /* ViewController.swift in Sources */,
 				800E72602279ACED0009979F /* RideAccess.swift in Sources */,
 				800E72622279AD180009979F /* DiscountAccess.swift in Sources */,
+				80B0C58D228F3A7900DB148B /* SeasonPassGuest.swift in Sources */,
 				800E725C2279AC930009979F /* ParkCheckpoints.swift in Sources */,
 				80DD2C8F225E7CCA001CBFEC /* Employee.swift in Sources */,
 				800E726B2279EBE20009979F /* PersonalInformation.swift in Sources */,
@@ -283,6 +305,8 @@
 				80DD2C85225E7BBE001CBFEC /* Guest.swift in Sources */,
 				800E725E2279ACAE0009979F /* ParkArea.swift in Sources */,
 				E4C11135226B02C500E096A3 /* Entrant.swift in Sources */,
+				80B0C591228F424600DB148B /* Vendor.swift in Sources */,
+				80B0C596228FEBE200DB148B /* String.swift in Sources */,
 				800E72652279AD550009979F /* InvalidData.swift in Sources */,
 				800E727B227E08360009979F /* SwipeErrror.swift in Sources */,
 			);

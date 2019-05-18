@@ -9,15 +9,17 @@
 import Foundation
 
 /// Guest Type of Entrant Type
-enum GuestType: String, EntrantType {
+enum GuestType: EntrantType {
 
-    case classic = "Normal Guest"
-    case vip = "VIP Guest"
-    case child = "Child Guest"
+    case classic
+    case vip
+    case child
+    case seasonPassHolder
+    case senior
     
     func accessAreas() -> [ParkArea] {
         switch self {
-        case .classic, .vip, .child:
+        case .classic, .vip, .child, .seasonPassHolder, .senior:
             return [.amusement]
         }
     }
@@ -26,7 +28,7 @@ enum GuestType: String, EntrantType {
         switch self {
         case .classic, .child:
             return [.unlimited]
-        case .vip:
+        case .vip, .seasonPassHolder, .senior:
             return [.unlimited, .skipLines]
         }
     }
@@ -35,8 +37,10 @@ enum GuestType: String, EntrantType {
         switch self {
         case .classic, .child:
             return [.foodDiscount(percentage: 0), .merchandiseDiscount(percentage: 0)]
-        case .vip:
+        case .vip, .seasonPassHolder:
             return [.foodDiscount(percentage: 10.0), .merchandiseDiscount(percentage: 20.0)]
+        case .senior:
+            return [.foodDiscount(percentage: 10.0), .merchandiseDiscount(percentage: 10.0)]
         }
     }
 }

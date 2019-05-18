@@ -9,11 +9,13 @@
 import Foundation
 
 /// Employee Type of Entrant Type
-enum EmployeeType: String, EntrantType {
-    case foodService = "Employee - Food Service"
-    case rideService = "Employee - Ride Service"
-    case maintenance = "Employee - Maintenance"
-    case manager = "Manager"
+enum EmployeeType: EntrantType {
+    
+    case foodService
+    case rideService
+    case maintenance
+    case manager
+    case contractEmployee(projectNumber: Int)
     
     func accessAreas() -> [ParkArea] {
         switch self {
@@ -25,6 +27,18 @@ enum EmployeeType: String, EntrantType {
             return [.amusement, .kitchen, .rideControl, .maintanance]
         case .manager:
             return [.amusement, .kitchen, .rideControl, .maintanance, .office]
+        case .contractEmployee(projectNumber:1001):
+            return [.amusement, .rideControl]
+        case .contractEmployee(projectNumber:1002):
+            return [.amusement, .rideControl, .maintanance]
+        case .contractEmployee(projectNumber:1003):
+            return [.amusement, .rideControl, .kitchen, .maintanance, .office]
+        case .contractEmployee(projectNumber:2001):
+            return [.office]
+        case .contractEmployee(projectNumber:2002):
+            return [.kitchen, .maintanance]
+        default:
+            return []
         }
     }
     
@@ -32,6 +46,8 @@ enum EmployeeType: String, EntrantType {
         switch self {
         case .foodService, .rideService, .maintenance, .manager:
             return [.unlimited]
+        default:
+            return [.limited]
         }
     }
     
@@ -41,6 +57,8 @@ enum EmployeeType: String, EntrantType {
             return [.foodDiscount(percentage: 15.0), .merchandiseDiscount(percentage: 25.0)]
         case .manager:
             return [.foodDiscount(percentage: 25.0), .merchandiseDiscount(percentage: 25.0)]
+        default:
+            return [.foodDiscount(percentage: 0), .merchandiseDiscount(percentage: 0)]
         }
     }
     
