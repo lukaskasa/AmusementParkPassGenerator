@@ -32,6 +32,7 @@ class ChildGuest: Guest {
         if let dateOfBirthDate = dateOfBirth {
             self.dateOfBirth = try? dateOfBirthDate.convertToDate()
             guard let dOB = self.dateOfBirth else { throw InvalidData.invalidDateOfBirth }
+            if dOB > Date() { throw InvalidData.invalidDateOfBirth }
             if !isChildUnderFive(dateOfBirth: dOB) {
                 throw InvalidData.childIsTooOld
             }
@@ -48,13 +49,13 @@ class ChildGuest: Guest {
     func isChildUnderFive(dateOfBirth: Date) -> Bool {
         let leapYearDay = childAgeLimit * 0.25
         let timeSinceNowInSeconds = TimeInterval((-self.childAgeLimit * 31536000) - leapYearDay * 86400)
-        let fiveYearsAgo = Date(timeIntervalSinceNow: timeSinceNowInSeconds)
-        var isUnderFive = false
+        let ageLimit = Date(timeIntervalSinceNow: timeSinceNowInSeconds)
+        var isUnderAgeLimit = false
         
-        if dateOfBirth > fiveYearsAgo {
-            isUnderFive = true
+        if dateOfBirth > ageLimit {
+            isUnderAgeLimit = true
         }
         
-        return isUnderFive
+        return isUnderAgeLimit
     }
 }

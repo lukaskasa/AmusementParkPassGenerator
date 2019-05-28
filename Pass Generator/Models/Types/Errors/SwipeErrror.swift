@@ -9,6 +9,6 @@
 import Foundation
 
 /// Type for a swipe error
-enum SwipeError: Error {
-    case swipedTooOften
+enum SwipeError: String, Error {
+    case swipedTooOften = "Please wait 5 seconds before swiping again, thank your for you patience!"
 }

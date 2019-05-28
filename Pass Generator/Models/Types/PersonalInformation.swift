@@ -10,10 +10,10 @@ import Foundation
 
 /// Struct to represent entrants personal information
 struct PersonalInformation {
-    var firstName: String
-    var lastName: String
-    var streetAddress: String
-    var city: String
-    var state: String
-    var zipCode: String
+    var firstName: String?
+    var lastName: String?
+    var streetAddress: String?
+    var city: String?
+    var state: String?
+    var zipCode: String?
 }

@@ -9,13 +9,28 @@
 import Foundation
 
 /// Employee Type of Entrant Type
-enum EmployeeType: EntrantType {
+enum EmployeeType: CaseIterable, EntrantType {
     
     case foodService
     case rideService
     case maintenance
+    case contractor
     case manager
-    case contractEmployee(projectNumber: Int)
+    
+    var title: String {
+        switch self {
+        case .foodService:
+            return "Food"
+        case .rideService:
+            return "Ride"
+        case .maintenance:
+            return "Maintenance"
+        case .contractor:
+            return "Contractor"
+        case .manager:
+            return "Manager"
+        }
+    }
     
     func accessAreas() -> [ParkArea] {
         switch self {
@@ -25,20 +40,10 @@ enum EmployeeType: EntrantType {
             return [.amusement, .rideControl]
         case .maintenance:
             return [.amusement, .kitchen, .rideControl, .maintanance]
+        case .contractor:
+            return []
         case .manager:
             return [.amusement, .kitchen, .rideControl, .maintanance, .office]
-        case .contractEmployee(projectNumber:1001):
-            return [.amusement, .rideControl]
-        case .contractEmployee(projectNumber:1002):
-            return [.amusement, .rideControl, .maintanance]
-        case .contractEmployee(projectNumber:1003):
-            return [.amusement, .rideControl, .kitchen, .maintanance, .office]
-        case .contractEmployee(projectNumber:2001):
-            return [.office]
-        case .contractEmployee(projectNumber:2002):
-            return [.kitchen, .maintanance]
-        default:
-            return []
         }
     }
     
@@ -46,8 +51,8 @@ enum EmployeeType: EntrantType {
         switch self {
         case .foodService, .rideService, .maintenance, .manager:
             return [.unlimited]
-        default:
-            return [.limited]
+        case .contractor:
+            return []
         }
     }
     
@@ -57,8 +62,8 @@ enum EmployeeType: EntrantType {
             return [.foodDiscount(percentage: 15.0), .merchandiseDiscount(percentage: 25.0)]
         case .manager:
             return [.foodDiscount(percentage: 25.0), .merchandiseDiscount(percentage: 25.0)]
-        default:
-            return [.foodDiscount(percentage: 0), .merchandiseDiscount(percentage: 0)]
+        case .contractor:
+            return [.foodDiscount(percentage: 0.0), .merchandiseDiscount(percentage: 0.0)]
         }
     }
     
@@ -68,6 +73,13 @@ enum EmployeeType: EntrantType {
 class Employee: Entrant {
     
     /// Properties
+    let maximumFirstNameChars = 15
+    let maximumLastNameChars = 25
+    let maximumCityChars = 25
+    let maximumStateChars = 15
+    let maximumZipCodeLength = 5
+    let maximumStreetChars = 40
+    
     var entrantType: EntrantType
     
     var accessAreas: [ParkArea] {
@@ -83,6 +95,9 @@ class Employee: Entrant {
     }
     
     var dateOfBirth: Date?
+    var projectNumber: Int?
+    var companyName: String?
+    var dateOfVisit = Date()
     var personalInformation: PersonalInformation?
     
     /**
@@ -108,7 +123,7 @@ class Employee: Entrant {
      
      - Returns: A child guest with access permissions
      */
-    init(entrantType: EmployeeType, firstName: String, lastName: String, streetAddress: String, city: String, state: String, zipCode: String) throws {
+    init(entrantType: EmployeeType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: String?) throws {
         self.entrantType = entrantType
         
         if firstName == "" { throw MissingData.missingFirstName }
@@ -117,6 +132,13 @@ class Employee: Entrant {
         if city == "" { throw MissingData.missingCity }
         if state == "" { throw MissingData.missingState }
         if zipCode == "" { throw MissingData.missingZipCode }
+        
+        if firstName!.count > maximumFirstNameChars || (Int(firstName!) != nil) { throw InvalidData.invalidfirstName }
+        if lastName!.count > maximumLastNameChars || (Int(lastName!) != nil) { throw InvalidData.invalidLastName }
+        if streetAddress!.count > maximumStreetChars { throw InvalidData.invalidStreetAddress }
+        if city!.count > maximumCityChars || (Int(city!) != nil) { throw InvalidData.invalidCity }
+        if state!.count > maximumStateChars || (Int(state!) != nil) { throw InvalidData.invalidState }
+        if zipCode!.count > maximumZipCodeLength || (Int(zipCode!) == nil) { throw InvalidData.invalidZipCode }
         
         self.personalInformation = PersonalInformation(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode)
     }

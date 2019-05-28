@@ -10,12 +10,14 @@ import Foundation
 
 /// Error type to represent if data necessary data is missing
 enum MissingData: String, Error {
-    case missingDateOfBirth = "Missing Date Of Birth!"
-    case missingFirstName = "Missing First Name!"
-    case missingLastName = "Missing Last Name!"
-    case missingStreetAddress = "Missing street address!"
-    case missingCity = "Missing city!"
-    case missingState = "Missing the state!"
-    case missingZipCode = "Missing zip code!"
-    case missingDateOfVisit = "Mssing Date of Visit!"
+    case missingDateOfBirth = "Please enter a Date Of Birth!"
+    case missingFirstName = "Please enter a First Name!"
+    case missingLastName = "Please enter a Last Name!"
+    case missingStreetAddress = "Please enter a street address!"
+    case missingCity = "Please enter a city!"
+    case missingState = "Please enter a the state!"
+    case missingZipCode = "Please enter a zip code!"
+    case missingDateOfVisit = "Please enter a Date of Visit!"
+    case missingProjectNumber = "Please enter a Project Number!"
+    case missingCompanyName = "Please enter a company name!"
 }

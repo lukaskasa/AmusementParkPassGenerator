@@ -9,8 +9,7 @@
 import Foundation
 
 extension String {
-    
-    
+
     /**
      Converts a String into a Date given the correct format MM/dd/yyyy
      

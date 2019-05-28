@@ -8,11 +8,25 @@
 
 import Foundation
 
-enum VendorCompany: String, EntrantType {
-    case acme = "Acme"
-    case orkin = "Orkin"
-    case fedex = "Fedex"
-    case nwElectrical = "NW Electrical"
+enum VendorCompany: CaseIterable, EntrantType {
+    
+    case acme
+    case orkin
+    case fedex
+    case nwElectrical
+    
+    var title: String {
+        switch self {
+        case .acme:
+            return "Acme"
+        case .orkin:
+            return "Orkin"
+        case .fedex:
+            return "Fedex"
+        case .nwElectrical:
+            return "NW Electrical"
+        }
+    }
     
     func accessAreas() -> [ParkArea] {
         switch self {
@@ -38,6 +52,14 @@ enum VendorCompany: String, EntrantType {
 
 class Vendor: Entrant {
     
+    /// Properties
+    let maximumFirstNameChars = 15
+    let maximumLastNameChars = 25
+    let maximumCityChars = 25
+    let maximumStateChars = 15
+    let maximumZipCodeLength = 5
+    let maximumStreetChars = 30
+    
     var entrantType: EntrantType
     
     var accessAreas: [ParkArea] {
@@ -52,23 +74,29 @@ class Vendor: Entrant {
         return entrantType.discountAccess()
     }
     
-    var companyName: String
     var dateOfBirth: Date?
-    var dateOfVisit: Date?
+    var dateOfVisit = Date()
+    var projectNumber: Int?
+    var companyName: String?
     var personalInformation: PersonalInformation?
     
-    init(entrantType: VendorCompany, firstName: String, lastName: String, dateOfBirth: String?, dateOfVisit: String?) throws {
+    init(entrantType: VendorCompany, firstName: String?, lastName: String?, dateOfBirth: String?, companyName: String?) throws {
         self.entrantType = entrantType
-        self.companyName = entrantType.rawValue
+        self.companyName = companyName
         
         if firstName == "" { throw MissingData.missingFirstName }
         if lastName == "" { throw MissingData.missingLastName }
         if dateOfBirth == "" { throw MissingData.missingDateOfBirth }
-        if dateOfVisit == "" { throw MissingData.missingDateOfVisit }
-        if let dateOfBirthDate = dateOfBirth, let dateOfVisitDate = dateOfVisit {
+        if let dateOfBirthDate = dateOfBirth {
             self.dateOfBirth = try? dateOfBirthDate.convertToDate()
-            self.dateOfVisit = try? dateOfVisitDate.convertToDate()
         }
+        guard let dOB = self.dateOfBirth else { throw InvalidData.invalidDateOfBirth }
+        if dOB > Date() { throw InvalidData.invalidDateOfBirth }
+        
+        if firstName!.count > maximumFirstNameChars || (Int(firstName!) != nil) { throw InvalidData.invalidfirstName }
+        if lastName!.count > maximumLastNameChars || (Int(lastName!) != nil) { throw InvalidData.invalidLastName }
+        
+        self.personalInformation = PersonalInformation(firstName: firstName, lastName: lastName, streetAddress: nil, city: nil, state: nil, zipCode: nil)
     }
     
 }

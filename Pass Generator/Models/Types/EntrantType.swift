@@ -10,6 +10,7 @@ import Foundation
 
 /// Blueprint to represent an entrant type
 protocol EntrantType {
+    var title: String { get }
     func accessAreas() -> [ParkArea]
     func rideAccess() -> [RideAccess]
     func discountAccess() -> [DiscountAccess]

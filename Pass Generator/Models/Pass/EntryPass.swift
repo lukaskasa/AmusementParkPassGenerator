@@ -14,8 +14,8 @@ protocol Pass {
     var accessAreas: [ParkArea] { get }
     var rideAccess: [RideAccess] { get }
     var dicountAccess: [DiscountAccess] { get }
-    var justSwiped: Bool { get set }
-    func swipePass(at location: ParkCheckpoint) -> Bool
+    var isLocked: Bool { get set }
+    func swipePass(at location: ParkCheckpoint) throws -> Bool
 }
 
 /// Pass object - used to enter the amusement park, enter its areas, enter rides and get discounts on goods
@@ -27,7 +27,7 @@ class EntryPass: Pass {
     var dicountAccess: [DiscountAccess]
     
     let swipeDelay = 5.0
-    var justSwiped = false
+    var isLocked = false
     
     /**
      Initializes a new Park Entry Pass
@@ -51,21 +51,18 @@ class EntryPass: Pass {
      
      - Returns: Bool
      */
-    func swipePass(at location: ParkCheckpoint) -> Bool {
-        if isEntrantsBirthday() {
-            print("Happy Birthday! Enjoy your stay at the park!")
+    func swipePass(at location: ParkCheckpoint) throws -> Bool {
+        if isLocked && (location.checkPointType == .rideEntrance) {
+            throw SwipeError.swipedTooOften
         }
         
-        if justSwiped && (location.checkPointType == .rideEntrance) {
-            print("Please wait 5 seconds before swiping again, thank you!")
+        if (location.checkPointType == .rideEntrance) {
+            isLocked = true
             DispatchQueue.main.asyncAfter(deadline: .now() + swipeDelay) {
-                print("Swipe lock disabled")
-                self.justSwiped = false
+                // Swipe lock disabled
+                self.isLocked = false
             }
-            return false
         }
-        
-        if (location.checkPointType == .rideEntrance) { justSwiped = true }
         
         return location.validate(pass: self)
     }

@@ -15,5 +15,8 @@ protocol Entrant {
     var rideAccess: [RideAccess] { get }
     var discountAccess: [DiscountAccess] { get }
     var dateOfBirth: Date? { get set }
+    var dateOfVisit: Date { get set }
+    var projectNumber: Int? { get set }
+    var companyName: String? { get set }
     var personalInformation: PersonalInformation? { get set }
 }

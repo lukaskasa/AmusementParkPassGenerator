@@ -9,13 +9,28 @@
 import Foundation
 
 /// Guest Type of Entrant Type
-enum GuestType: EntrantType {
+enum GuestType: CaseIterable, EntrantType {
 
-    case classic
-    case vip
     case child
+    case classic
     case seasonPassHolder
     case senior
+    case vip
+    
+    var title: String {
+        switch self {
+        case .child:
+            return "Child"
+        case .classic:
+            return "Adult"
+        case .seasonPassHolder:
+            return "Season"
+        case .senior:
+            return "Senior"
+        case .vip:
+            return "VIP"
+        }
+    }
     
     func accessAreas() -> [ParkArea] {
         switch self {
@@ -49,6 +64,13 @@ enum GuestType: EntrantType {
 class Guest: Entrant {
 
     /// Properties
+    let maximumFirstNameChars = 15
+    let maximumLastNameChars = 25
+    let maximumCityChars = 25
+    let maximumStateChars = 15
+    let maximumZipCodeLength = 5
+    let maximumStreetChars = 40
+    
     var entrantType: EntrantType
     
     var accessAreas: [ParkArea] {
@@ -64,7 +86,9 @@ class Guest: Entrant {
     }
     
     var personalInformation: PersonalInformation?
-    
+    var projectNumber: Int?
+    var companyName: String?
+    var dateOfVisit = Date()
     var dateOfBirth: Date?
     
     /**

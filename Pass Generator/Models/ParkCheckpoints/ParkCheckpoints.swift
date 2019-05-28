@@ -105,7 +105,7 @@ class ParkKioskRegister: ParkCheckpoint {
      - Returns: Bool
      */
     func validate(pass: Pass) -> Bool {
-        if pass.dicountAccess[0].discountAmount > 0 && pass.dicountAccess[1].discountAmount > 0 {
+        if pass.dicountAccess.contains(where: { $0.discountAmount > 0 }) {
             return true
         }
         return false
