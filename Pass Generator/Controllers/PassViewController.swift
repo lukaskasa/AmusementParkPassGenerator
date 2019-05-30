@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Enum to identify validate type buttons
 enum ValidateButton: Int {
     case amusementAreaButton = 1
     case kitchenAreaButton
@@ -56,8 +57,16 @@ class PassViewController: UIViewController {
         
     }
     
-    /// Actions
+    // MARK: - Actions
     
+    /**
+     Validates the pass at the different checkpoints
+     
+     - Parameter
+        - sender: the button tapped
+     
+     - Returns: Void
+     */
     @IBAction func validatePass(_ sender: UIButton) {
         
         guard let fastLane = entrantPass?.entrant?.rideAccess.contains(where: {$0 == .skipLines}) else { return }
@@ -85,12 +94,28 @@ class PassViewController: UIViewController {
         
     }
     
+    /**
+     Close the pass view
+     
+     - Parameter
+         - sender: the button tapped
+     
+     - Returns: Void
+     */
     @IBAction func createNewPass(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Helper methods
     
+    /**
+     Sets up the pass attributes for the entrant type
+     
+     - Parameter
+        - pass: the pass used to get the attributes from
+     
+     - Returns: Void
+     */
     func setPassAttributes(pass: EntryPass) {
         // Set pass type
         var fullName: String = ""
@@ -127,6 +152,16 @@ class PassViewController: UIViewController {
         merchDiscountLabel.text = "\(Int(pass.dicountAccess[1].discountAmount))% Merch Discount"
     }
     
+    /**
+     Sets up the pass attributes for the entrant type
+     
+     - Parameter
+        - checkpoint: The checkpoint to be validates
+        - fastLane: if it is the fast lane, default is false
+        - typeOfDiscount: the type of Dicount it is, default is food
+     
+     - Returns: Void
+     */
     func updateValidationArea(for checkpoint: ParkCheckpoint, fastLane: Bool = false, typeOfDiscount: ValidateButton = .foodDiscountButton) {
         guard let pass = entrantPass else { return }
         var discountInfo = ""

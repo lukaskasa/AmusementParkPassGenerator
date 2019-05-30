@@ -49,6 +49,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet var topStackViewConstraint: NSLayoutConstraint!
     
+    // MARK: - View Life Cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,14 @@ class ViewController: UIViewController {
     
     // MARK: - Action Methods
 
+    /**
+     Switches the form for the tapped for the Main Entrant Type
+     
+     - Parameter
+     - sender: the button tapped
+     
+     - Returns: Void
+     */
     @IBAction func switchEntrantType(_ sender: UIButton) {
         clearForm()
         hideButtons(entrantSubTypeButtons)
@@ -112,6 +121,14 @@ class ViewController: UIViewController {
         
     }
     
+    /**
+     Switches the form for the tapped sub entrant type of the main type
+     
+     - Parameter
+     - sender: the button tapped
+     
+     - Returns: Void
+     */
     @IBAction func switchEntrantTypeForm(_ sender: UIButton) {
         clearForm()
         disableFields()
@@ -121,6 +138,14 @@ class ViewController: UIViewController {
         toggleForm(for: selectedType)
     }
     
+    /**
+     Generates a pass for each entrant type and catches all thrown errors
+     
+     - Parameter
+     - sender: the button tapped
+     
+     - Returns: Void
+     */
     @IBAction func generatePass(_ sender: UIButton) {
         switch selectedType  {
         case GuestType.classic:
@@ -436,6 +461,14 @@ class ViewController: UIViewController {
         }
     }
     
+    /**
+     Populates form with data
+     
+     - Parameter
+     - sender: the button tapped
+     
+     - Returns: Void
+     */
     @IBAction func populateData(_ sender: UIButton) {
         switch selectedType {
         case GuestType.child:
@@ -462,19 +495,41 @@ class ViewController: UIViewController {
     
     // MARK: - Helper Methods
     
+    /**
+     Fills the form with the provided data
+     
+     - Parameter
+        - fields: the fields to be filled with data
+        - senior: whether it is a senior entrant to get the correct date ob birth
+        - company: the vendor company
+     
+     - Returns: Void
+     */
     func fillForm(for fields: [FormField], senior: Bool = false, company: VendorCompany = .acme){
         for field in fields {
             formFields.filter({ $0.tag == field.rawValue }).first?.text = dataGenerator.getData(for: field, senior: senior, company: company)
         }
     }
     
+    /**
+     Clears the form
+     
+     - Returns: Void
+     */
     func clearForm() {
         for field in formFields {
             field.text = ""
         }
     }
     
-    // Select Type
+    /**
+     Shows the buttons for the selected entrant types
+     
+     - Parameter
+     - type: for the entrant types
+     
+     - Returns: Void
+     */
     func selectType(_ type: String) {
         switch type {
         case "Child":
@@ -510,14 +565,30 @@ class ViewController: UIViewController {
         }
     }
     
-    /// To hide all sub type buttons
+    /**
+     Shows the buttons
+     
+     - Parameter
+     - buttons: the buttons to be shown
+     - types:
+     
+     - Returns: Void
+     */
     func hideButtons(_ buttons: [UIButton]) {
         for button in buttons {
             button.isHidden = true
         }
     }
     
-    /// To Show right amount of buttons
+    /**
+     Shows the buttons for the selected entrant types
+     
+     - Parameter
+     - buttons: the buttons to be shown
+     - types: for the entrant types
+     
+     - Returns: Void
+     */
     func showButtons(_ buttons: [UIButton], for types: [EntrantType]) {
         for (index, type) in types.enumerated() {
             buttons[index].setTitle(type.title, for: .normal)
@@ -525,7 +596,11 @@ class ViewController: UIViewController {
         }
     }
     
-    /// DisableFields
+    /**
+     Disables all the fields and applies some styles
+     
+     - Returns: Void
+     */
     func disableFields() {
         for field in formFields {
             field.isEnabled = false
@@ -535,12 +610,26 @@ class ViewController: UIViewController {
         }
     }
     
-    // Get Form field Text
+    /**
+     Gets the entry from the selected field
+     
+     - Parameter
+     - formField: the field where the entry is taken from
+     
+     - Returns: String?
+     */
     func getInfo(from formField: FormField) -> String? {
         return formFields.first(where: {$0.tag == formField.rawValue})?.text
     }
     
-    /// Toggle form
+    /**
+     Toggles the form for the different the entrant types
+     
+     - Parameter
+     - type: for which entrant type the fields are activated
+     
+     - Returns: Void
+     */
     func toggleForm(for type: EntrantType) {
         switch type {
         case GuestType.child:
@@ -558,6 +647,14 @@ class ViewController: UIViewController {
         }
     }
     
+    /**
+     Toggles the form fields active/inactive and applying some styles
+     
+     - Parameter
+     - fields: toggle form for the EntrantType
+     
+     - Returns: Void
+     */
     func toggleFields(_ fields: [FormField]) {
         for field in formFields {
             if fields.contains(where: { $0.rawValue == field.tag }) {
@@ -572,6 +669,15 @@ class ViewController: UIViewController {
         }
     }
     
+    /**
+     Sets the font weight fo the button row
+     
+     - Parameter target:
+     - buttonRow: the UIButton array to be effected
+     - fontSize: the font size of the button row
+     
+     - Returns: Bool
+     */
     func setTitleWeight(target: UIButton, buttonRow: [UIButton], fontSize: CGFloat) {
         for button in buttonRow {
             button.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: fontSize)
@@ -580,18 +686,31 @@ class ViewController: UIViewController {
         target.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: fontSize)
     }
     
-
-    
+    /**
+     Sets the font weight fo the button row
+     
+     - Parameter target:
+     - notification: Information container
+     
+     - Returns: Void
+     */
     @objc func keyBoardWillShow(_ notification: Notification) {
         if let info = notification.userInfo, let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             keyboardHeight = keyboardFrame.cgRectValue.size.height
         }
     }
     
+    /**
+     Hides the keyboard by
+     
+     - Parameter target:
+     - notification: Information container
+     
+     - Returns: Void
+     */
     @objc func keyBoardWillHide() {
         bottomViewConstraint.constant = 30
         NSLayoutConstraint.activate([
-              //topStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
             topStackViewConstraint
         ])
         UIView.animate(withDuration: 0.8){
@@ -613,6 +732,14 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    /**
+     Set ups the NotificationCenter to observe Textfields
+     
+     - Parameter
+     - fields: the fields to be observed
+     
+     - Returns: Void
+     */
     func setUpNotifications(for fields: [FormField]) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -628,6 +755,14 @@ class ViewController: UIViewController {
 
 extension ViewController: UITextFieldDelegate {
 
+    /**
+     Delegate method to hide keyboard when return button is tapped
+     
+     - Parameter
+     - textField: textfield which initialized the keyboard
+     
+     - Returns: Bool
+     */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

@@ -9,6 +9,7 @@
 import Foundation
 import GameKit
 
+// Struct to retrieve random data for the fields
 struct DataGenerator {
     
     let childAgeLimit = 5
@@ -42,7 +43,6 @@ struct DataGenerator {
         guard let date = calendar.date(byAdding: offsetComponents, to: Date(timeIntervalSinceNow: -seniorAge*365.25*24*60*60)) else { fatalError() }
         return "\(calendar.component(.month, from: date))/\(calendar.component(.day, from: date))/\(calendar.component(.year, from: date))"
     }
-    
     
     var projectNumber: String {
         return "\(projectNumbers[GKRandomSource.sharedRandom().nextInt(upperBound: projectNumbers.count)])"

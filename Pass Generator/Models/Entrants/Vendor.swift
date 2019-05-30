@@ -80,6 +80,27 @@ class Vendor: Entrant {
     var companyName: String?
     var personalInformation: PersonalInformation?
     
+    
+    /**
+     Initializes a new Season Pass Guest
+     
+     - Parameters:
+        - entrantType: Vendor Entrant Type
+        - firstName: Employees first name
+        - lastName: Employees last name
+        - companyName: Company name
+     
+     - Throws:
+     'MissingData.missingDateOfBirth' - if no date of birth is provided
+     'MissingData.missingFirstName' - if no first name is provided
+     'MissingData.missingLastName' - if no last name is provided'
+     
+     'InvalidData.invalidDateOfBirth' - if date of birth is not entered in the correct format
+     'InvalidData.invalidfirstName' - if first name doesn't meet the maximum or is of numeric type
+     'InvalidData.invalidLastName' - if last name doesn't meet the maximum length or is of numeric type
+     
+     - Returns: Returns a vendor pass
+     */
     init(entrantType: VendorCompany, firstName: String?, lastName: String?, dateOfBirth: String?, companyName: String?) throws {
         self.entrantType = entrantType
         self.companyName = companyName
