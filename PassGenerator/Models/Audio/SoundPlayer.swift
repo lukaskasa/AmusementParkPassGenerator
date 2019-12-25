@@ -11,6 +11,7 @@ import AVFoundation
 
 class SoundPlayer {
     
+    /// Static function to play error sound on the correct AccessError
     static func playSound(for error: AccessError) {
         var sound: SystemSoundID = 0
         let path = Bundle.main.path(forResource: error.rawValue, ofType: "wav")!

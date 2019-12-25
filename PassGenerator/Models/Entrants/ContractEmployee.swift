@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+/// Contract Type of Entrant Type
 enum ContractEmployeeType: EntrantType {
     case contractEmployee(projectNumber: Int)
     
@@ -46,6 +46,29 @@ class ContractEmployee: Employee {
     
     let maximumProjectNumber = 9999
     
+    /**
+     Initializes a new Season Pass Guest
+     
+     - Parameters:
+        - firstName:Employees first name
+        - lastName: Employees last name
+        - streetAddress: Employees street address
+        - city: Employees city
+        - state: Employees state
+        - zipCode: Employees zipCode
+     
+     - Throws:
+     'MissingData.missingDateOfBirth' - if no date of birth is provided
+     'MissingData.missingFirstName' - if no first name is provided
+     'MissingData.missingLastName' - if no last name is provided'
+     
+     'InvalidData.invalidProjectNumber' - if the project number is greater than 4 digits
+     'InvalidData.invalidDateOfBirth' - if date of birth is not entered in the correct format
+     'InvalidData.invalidfirstName' - if first name doesn't meet the maximum or is of numeric type
+     'InvalidData.invalidLastName' - if last name doesn't meet the maximum length or is of numeric type
+     
+     - Returns: Returns a senior pass guest
+     */
     init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: String?, projectNumber: String?) throws {
     if projectNumber == ""  { throw MissingData.missingProjectNumber }
     guard let number = projectNumber else { throw InvalidData.invalidProjectNumber }

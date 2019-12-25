@@ -95,7 +95,7 @@ class Guest: Entrant {
      Initializes a new Guest object
      
      - Parameters:
-     - entrantType: The type of guest type
+        - entrantType: The type of guest type
      
      - Returns: A guest object with access permissions
      */

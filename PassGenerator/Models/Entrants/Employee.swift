@@ -104,13 +104,13 @@ class Employee: Entrant {
      Initializes a new Employee object
      
      - Parameters:
-     - entrantType: EmployeeType (kitchenService, rideService, maintenance, manager)
-     - firstName: Employees first name
-     - lastName: Employees last name
-     - streetAddress: Employees street address
-     - city: Employees city
-     - state: Employees state
-     - zipCode: Employees zipCode
+        - entrantType: EmployeeType (kitchenService, rideService, maintenance, manager)
+        - firstName: Employees first name
+        - lastName: Employees last name
+        - streetAddress: Employees street address
+        - city: Employees city
+        - state: Employees state
+        - zipCode: Employees zipCode
      
      - Throws:
      'MissingData.missingFirstName'- if no first name is provided

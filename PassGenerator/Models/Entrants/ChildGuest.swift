@@ -17,7 +17,7 @@ class ChildGuest: Guest {
      Initializes a new Child Guest
      
      - Parameters:
-     - dateOfBirth: Date of birth of the child
+        - dateOfBirth: Date of birth of the child
      
      - Throws:
      'InvalidData.invalidDateOfBirth'- if date provided is not valid.
